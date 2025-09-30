@@ -1,0 +1,30 @@
+{
+  "name": "advanced-crm-api",
+  "version": "1.0.0",
+  "description": "An API for a Customer Relationship Management (CRM) aplication. This API was made for an work at UNIPÊ college (Computer Science), at second semester.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JoaoArnaud/advanced-crm-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JoaoArnaud/advanced-crm-api/issues"
+  },
+  "homepage": "https://github.com/JoaoArnaud/advanced-crm-api#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.6.0",
+    "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  }
+}
