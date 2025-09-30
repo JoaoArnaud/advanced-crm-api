@@ -4,11 +4,10 @@
   "description": "An API for a Customer Relationship Management (CRM) aplication. This API was made for an work at UNIPÊ college (Computer Science), at second semester.",
   "main": "index.js",
   "scripts": {
-  "build": "tsc",
-  "start": "node dist/index.js",
-  "dev": "tsx watch src/index.ts"
-},
-
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsx watch src/index.ts"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/JoaoArnaud/advanced-crm-api.git"
@@ -21,7 +20,14 @@
   },
   "homepage": "https://github.com/JoaoArnaud/advanced-crm-api#readme",
   "dependencies": {
-    "express": "^5.1.0"
+    "@prisma/client": "^6.16.3",
+    "@types/swagger-jsdoc": "^6.0.4",
+    "@types/swagger-ui-express": "^4.1.8",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "prisma": "^6.16.3",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
     "@types/express": "^5.0.3",
