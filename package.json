@@ -4,8 +4,11 @@
   "description": "An API for a Customer Relationship Management (CRM) aplication. This API was made for an work at UNIPÊ college (Computer Science), at second semester.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "build": "tsc",
+  "start": "node dist/index.js",
+  "dev": "nodemon src/index.ts"
+},
+
   "repository": {
     "type": "git",
     "url": "git+https://github.com/JoaoArnaud/advanced-crm-api.git"
