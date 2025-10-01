@@ -13,3 +13,75 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id        String @id @default(uuid())
+  name      String
+  email     String @unique
+  password  String
+
+  role Role
+  companyId String
+  company   Company @relation(fields: [companyId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("users")
+}
+
+model Company {
+  id        String      @id @default(uuid())
+  name      String
+  email     String?
+  phone     String?
+
+  users     User[]
+  leads     Leads[]
+  clients   Clients[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("companies")
+}
+
+model Leads {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String?
+  phone     String?
+  status    String?
+  cnpj      String?
+
+  companyId String
+  company   Company  @relation(fields: [companyId], references: [id])
+  clients   Clients[] @relation("ClientLead")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("leads")
+}
+
+model Clients {
+  id           Int      @id @default(autoincrement())
+  name         String
+  email        String?
+  phone        String?
+  cnpj         String?
+  companyId    String
+  company      Company @relation(fields: [companyId], references: [id])
+  leadOriginId Int?
+  leadOrigin   Leads?  @relation("ClientLead", fields: [leadOriginId], references: [id])
+
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@map("clients")
+}
+
+enum Role {
+  ADMIN
+  USER
+}
