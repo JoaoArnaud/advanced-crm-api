@@ -51,7 +51,7 @@ model Leads {
   name      String
   email     String?
   phone     String?
-  status    String?
+  status    LeadStatus @default(WARM)
   cnpj      String?
 
   companyId String
@@ -70,6 +70,7 @@ model Clients {
   email        String?
   phone        String?
   cnpj         String?
+  
   companyId    String
   company      Company @relation(fields: [companyId], references: [id])
   leadOriginId Int?
@@ -84,4 +85,10 @@ model Clients {
 enum Role {
   ADMIN
   USER
+}
+
+enum LeadStatus {
+  HOT
+  WARM
+  COLD
 }
