@@ -1,13 +1,19 @@
-import argon2 from "argon2";
 import prisma from "../db/prisma";
-import { User, Role } from "../generated/prisma";
+import { Prisma, Role } from "../generated/prisma";
+import { hashPassword, verifyPassword } from "../security/passwordHasher";
+import {
+    AuthenticationError,
+    ConflictError,
+    NotFoundError,
+    ValidationError,
+} from "../errors/applicationError";
 
-type createUserParams = {
-    name: string; 
-    email: string; 
-    password: string; 
-    companyId: string; 
-}
+type CreateUserParams = {
+    name: string;
+    email: string;
+    password: string;
+    companyId: string;
+};
 
 type UpdateUserParams = {
     name?: string;
@@ -15,50 +21,137 @@ type UpdateUserParams = {
     role?: Role;
 };
 
+const userBaseSelect = {
+    id: true,
+    name: true,
+    email: true,
+    role: true,
+    companyId: true,
+    createdAt: true,
+    updatedAt: true,
+} as const;
+
+type SafeUser = Prisma.UserGetPayload<{ select: typeof userBaseSelect }>;
+
 const userService = {
-    // create
-    async createUser(data: createUserParams): Promise<User> {
-    const passwordHash = await argon2.hash(data.password, {
-        type: argon2.argon2id,
-        memoryCost: 2 ** 16,
-        timeCost: 3,
-        parallelism: 1,
-    });
+    async createUser(data: CreateUserParams): Promise<SafeUser> {
+        const existing = await prisma.user.findUnique({ where: { email: data.email } });
 
-    return prisma.user.create({
-        data: {
-            name: data.name,
-            email: data.email,
-            passwordHash,
-            role: Role.USER,
-            company: {
-                connect: { id: data.companyId },
+        if (existing) {
+            throw new ConflictError("E-mail já cadastrado");
+        }
+
+        const passwordHash = await hashPassword(data.password);
+
+        return prisma.user.create({
+            data: {
+                name: data.name,
+                email: data.email,
+                passwordHash,
+                role: Role.USER,
+                company: { connect: { id: data.companyId } },
             },
-          },
+            select: userBaseSelect,
         });
     },
 
-    // read
-    async getUsers(): Promise<User[]> {
-        return prisma.user.findMany();
+    async getUsers(): Promise<SafeUser[]> {
+        return prisma.user.findMany({ select: userBaseSelect });
     },
 
-    async getUserById(id: string): Promise<User | null> {
-        return prisma.user.findUnique({ where: { id } });
+    async getUserById(id: string): Promise<SafeUser> {
+        const user = await prisma.user.findUnique({ where: { id }, select: userBaseSelect });
+
+        if (!user) {
+            throw new NotFoundError("Usuário não encontrado");
+        }
+
+        return user;
     },
 
-    // update
-    async updateUser(id: string, data: UpdateUserParams) {
-        return prisma.user.update({
-            where: { id },
-            data,
-        });
+    async updateUser(id: string, data: UpdateUserParams): Promise<SafeUser> {
+        const updateData = buildUpdatePayload(data);
+
+        if (!hasAtLeastOneField(updateData)) {
+            throw new ValidationError("Nenhum campo válido para atualizar");
+        }
+
+        try {
+            return await prisma.user.update({
+                where: { id },
+                data: updateData,
+                select: userBaseSelect,
+            });
+        } catch (error) {
+            mapAndThrowPrismaError(error);
+        }
     },
 
-    //delete
     async deleteUser(id: string): Promise<void> {
-        await prisma.user.delete({ where: { id } });
-    }
+        try {
+            await prisma.user.delete({ where: { id } });
+        } catch (error) {
+            mapAndThrowPrismaError(error);
+        }
+    },
+
+    async verifyCredentials(email: string, password: string): Promise<SafeUser> {
+        const user = await prisma.user.findUnique({
+            where: { email },
+            select: {
+                ...userBaseSelect,
+                passwordHash: true,
+            },
+        });
+
+        if (!user) {
+            throw new AuthenticationError();
+        }
+
+        const isValid = await verifyPassword(user.passwordHash, password);
+
+        if (!isValid) {
+            throw new AuthenticationError();
+        }
+
+        const { passwordHash, ...safeUser } = user;
+        return safeUser;
+    },
 };
 
+function buildUpdatePayload(data: UpdateUserParams): Prisma.UserUpdateInput {
+    const updateData: Prisma.UserUpdateInput = {};
+
+    if (typeof data.name === "string") {
+        updateData.name = data.name;
+    }
+
+    if (typeof data.companyId === "string") {
+        updateData.company = { connect: { id: data.companyId } };
+    }
+
+    if (typeof data.role !== "undefined") {
+        updateData.role = data.role;
+    }
+
+    return updateData;
+}
+
+function hasAtLeastOneField(data: Prisma.UserUpdateInput): boolean {
+    return Boolean(data.name || data.company || data.role);
+}
+
+function mapAndThrowPrismaError(error: unknown): never {
+    if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2025") {
+        throw new NotFoundError("Usuário não encontrado");
+    }
+
+    if (error instanceof Error) {
+        throw error;
+    }
+
+    throw new Error("Erro inesperado ao acessar o banco de dados");
+}
+
+export type { CreateUserParams, SafeUser, UpdateUserParams };
 export default userService;

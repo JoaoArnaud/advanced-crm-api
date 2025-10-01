@@ -23,60 +23,122 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const argon2_1 = __importDefault(require("argon2"));
 const prisma_1 = __importDefault(require("../db/prisma"));
 const prisma_2 = require("../generated/prisma");
-const hashPassword = (password) => argon2_1.default.hash(password, {
-    type: argon2_1.default.argon2id,
-    memoryCost: Math.pow(2, 16),
-    timeCost: 3,
-    parallelism: 1,
-});
+const passwordHasher_1 = require("../security/passwordHasher");
+const applicationError_1 = require("../errors/applicationError");
+const userBaseSelect = {
+    id: true,
+    name: true,
+    email: true,
+    role: true,
+    companyId: true,
+    createdAt: true,
+    updatedAt: true,
+};
 const userService = {
-    createUser(_a) {
-        return __awaiter(this, arguments, void 0, function* ({ name, email, password, companyId, role = prisma_2.Role.USER, }) {
-            const hashedPassword = yield hashPassword(password);
+    createUser(data) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const existing = yield prisma_1.default.user.findUnique({ where: { email: data.email } });
+            if (existing) {
+                throw new applicationError_1.ConflictError("E-mail já cadastrado");
+            }
+            const passwordHash = yield (0, passwordHasher_1.hashPassword)(data.password);
             return prisma_1.default.user.create({
                 data: {
-                    name,
-                    email,
-                    password: hashedPassword,
-                    role,
-                    company: {
-                        connect: { id: companyId },
-                    },
+                    name: data.name,
+                    email: data.email,
+                    passwordHash,
+                    role: prisma_2.Role.USER,
+                    company: { connect: { id: data.companyId } },
                 },
+                select: userBaseSelect,
             });
         });
     },
     getUsers() {
-        return prisma_1.default.user.findMany();
+        return __awaiter(this, void 0, void 0, function* () {
+            return prisma_1.default.user.findMany({ select: userBaseSelect });
+        });
     },
     getUserById(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            return prisma_1.default.user.findUnique({ where: { id } });
+            const user = yield prisma_1.default.user.findUnique({ where: { id }, select: userBaseSelect });
+            if (!user) {
+                throw new applicationError_1.NotFoundError("Usuário não encontrado");
+            }
+            return user;
         });
     },
     updateUser(id, data) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { password, companyId } = data, rest = __rest(data, ["password", "companyId"]);
-            const updateData = Object.assign({}, rest);
-            if (password) {
-                updateData.password = yield hashPassword(password);
+            const updateData = buildUpdatePayload(data);
+            if (!hasAtLeastOneField(updateData)) {
+                throw new applicationError_1.ValidationError("Nenhum campo válido para atualizar");
             }
-            if (companyId) {
-                updateData.company = { connect: { id: companyId } };
+            try {
+                return yield prisma_1.default.user.update({
+                    where: { id },
+                    data: updateData,
+                    select: userBaseSelect,
+                });
             }
-            return prisma_1.default.user.update({
-                where: { id },
-                data: updateData,
-            });
+            catch (error) {
+                mapAndThrowPrismaError(error);
+            }
         });
     },
     deleteUser(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield prisma_1.default.user.delete({ where: { id } });
+            try {
+                yield prisma_1.default.user.delete({ where: { id } });
+            }
+            catch (error) {
+                mapAndThrowPrismaError(error);
+            }
+        });
+    },
+    verifyCredentials(email, password) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const user = yield prisma_1.default.user.findUnique({
+                where: { email },
+                select: Object.assign(Object.assign({}, userBaseSelect), { passwordHash: true }),
+            });
+            if (!user) {
+                throw new applicationError_1.AuthenticationError();
+            }
+            const isValid = yield (0, passwordHasher_1.verifyPassword)(user.passwordHash, password);
+            if (!isValid) {
+                throw new applicationError_1.AuthenticationError();
+            }
+            const { passwordHash } = user, safeUser = __rest(user, ["passwordHash"]);
+            return safeUser;
         });
     },
 };
+function buildUpdatePayload(data) {
+    const updateData = {};
+    if (typeof data.name === "string") {
+        updateData.name = data.name;
+    }
+    if (typeof data.companyId === "string") {
+        updateData.company = { connect: { id: data.companyId } };
+    }
+    if (typeof data.role !== "undefined") {
+        updateData.role = data.role;
+    }
+    return updateData;
+}
+function hasAtLeastOneField(data) {
+    return Boolean(data.name || data.company || data.role);
+}
+function mapAndThrowPrismaError(error) {
+    if (error instanceof prisma_2.Prisma.PrismaClientKnownRequestError && error.code === "P2025") {
+        throw new applicationError_1.NotFoundError("Usuário não encontrado");
+    }
+    if (error instanceof Error) {
+        throw error;
+    }
+    throw new Error("Erro inesperado ao acessar o banco de dados");
+}
 exports.default = userService;
