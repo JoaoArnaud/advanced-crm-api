@@ -41,7 +41,7 @@ const userService = {
         return __awaiter(this, void 0, void 0, function* () {
             const existing = yield prisma_1.default.user.findUnique({ where: { email: data.email } });
             if (existing) {
-                throw new applicationError_1.ConflictError("E-mail já cadastrado");
+                throw new applicationError_1.ConflictError("E-mail alredy registered");
             }
             const passwordHash = yield (0, passwordHasher_1.hashPassword)(data.password);
             return prisma_1.default.user.create({
@@ -65,7 +65,7 @@ const userService = {
         return __awaiter(this, void 0, void 0, function* () {
             const user = yield prisma_1.default.user.findUnique({ where: { id }, select: userBaseSelect });
             if (!user) {
-                throw new applicationError_1.NotFoundError("Usuário não encontrado");
+                throw new applicationError_1.NotFoundError("User not found");
             }
             return user;
         });
@@ -74,7 +74,7 @@ const userService = {
         return __awaiter(this, void 0, void 0, function* () {
             const updateData = buildUpdatePayload(data);
             if (!hasAtLeastOneField(updateData)) {
-                throw new applicationError_1.ValidationError("Nenhum campo válido para atualizar");
+                throw new applicationError_1.ValidationError("No valid field to update");
             }
             try {
                 return yield prisma_1.default.user.update({
@@ -134,11 +134,11 @@ function hasAtLeastOneField(data) {
 }
 function mapAndThrowPrismaError(error) {
     if (error instanceof prisma_2.Prisma.PrismaClientKnownRequestError && error.code === "P2025") {
-        throw new applicationError_1.NotFoundError("Usuário não encontrado");
+        throw new applicationError_1.NotFoundError("User not found");
     }
     if (error instanceof Error) {
         throw error;
     }
-    throw new Error("Erro inesperado ao acessar o banco de dados");
+    throw new Error("Unexpected error when acessing database");
 }
 exports.default = userService;
