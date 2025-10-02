@@ -38,7 +38,7 @@ const userService = {
         const existing = await prisma.user.findUnique({ where: { email: data.email } });
 
         if (existing) {
-            throw new ConflictError("E-mail já cadastrado");
+            throw new ConflictError("E-mail alredy registered");
         }
 
         const passwordHash = await hashPassword(data.password);
@@ -63,7 +63,7 @@ const userService = {
         const user = await prisma.user.findUnique({ where: { id }, select: userBaseSelect });
 
         if (!user) {
-            throw new NotFoundError("Usuário não encontrado");
+            throw new NotFoundError("User not found");
         }
 
         return user;
@@ -73,7 +73,7 @@ const userService = {
         const updateData = buildUpdatePayload(data);
 
         if (!hasAtLeastOneField(updateData)) {
-            throw new ValidationError("Nenhum campo válido para atualizar");
+            throw new ValidationError("No valid field to update");
         }
 
         try {
@@ -143,14 +143,14 @@ function hasAtLeastOneField(data: Prisma.UserUpdateInput): boolean {
 
 function mapAndThrowPrismaError(error: unknown): never {
     if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2025") {
-        throw new NotFoundError("Usuário não encontrado");
+        throw new NotFoundError("User not found");
     }
 
     if (error instanceof Error) {
         throw error;
     }
 
-    throw new Error("Erro inesperado ao acessar o banco de dados");
+    throw new Error("Unexpected error when acessing database");
 }
 
 export type { CreateUserParams, SafeUser, UpdateUserParams };

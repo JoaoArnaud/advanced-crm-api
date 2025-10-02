@@ -5,29 +5,29 @@ const nonEmptyString = z.string().trim().min(1, "Campo obrigatório");
 
 export const createUserSchema = z.object({
     name: nonEmptyString,
-    email: z.string().trim().email("E-mail inválido"),
-    password: z.string().min(8, "Senha deve conter ao menos 8 caracteres"),
-    companyId: z.string().uuid("ID da empresa inválido"),
+    email: z.string().trim().email("Invalid e-mail"),
+    password: z.string().min(8, "Password must contain at least 8 characters"),
+    companyId: z.string().uuid("Invalid company ID"),
 });
 
 export const updateUserSchema = z
     .object({
         name: nonEmptyString.optional(),
-        companyId: z.string().uuid("ID da empresa inválido").optional(),
+        companyId: z.string().uuid("Invalid company ID").optional(),
         role: z.nativeEnum(Role).optional(),
     })
     .refine((data) => Object.values(data).some((value) => value !== undefined), {
-        message: "Informe ao menos um campo para atualizar",
+        message: "Enter at least one field to update",
         path: ["body"],
     });
 
 export const authenticateUserSchema = z.object({
-    email: z.string().trim().email("E-mail inválido"),
+    email: z.string().trim().email("Invalid e-mail"),
     password: nonEmptyString,
 });
 
 export const userIdParamSchema = z.object({
-    id: z.string().uuid("ID do usuário inválido"),
+    id: z.string().uuid("Invalid user ID"),
 });
 
 export type CreateUserInput = z.infer<typeof createUserSchema>;
