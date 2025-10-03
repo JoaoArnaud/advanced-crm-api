@@ -27,6 +27,11 @@ const userBaseSelect = {
     email: true,
     role: true,
     companyId: true,
+    company: {
+        select: {
+            name: true,
+        },
+    },
     createdAt: true,
     updatedAt: true,
 } as const;
