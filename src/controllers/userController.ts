@@ -79,7 +79,7 @@ function handleControllerError(res: Response, error: unknown): void {
     }
 
     console.error(error);
-    res.status(500).json({ message: "Erro interno do servidor" });
+    res.status(500).json({ message: "Server error" });
 }
 
 function parseWithZod<T>(schema: ZodSchema<T>, payload: unknown): T {
