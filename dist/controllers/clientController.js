@@ -13,27 +13,29 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const zod_1 = require("zod");
-const userService_1 = __importDefault(require("../services/userService"));
+const clientService_1 = __importDefault(require("../services/clientService"));
 const applicationError_1 = require("../errors/applicationError");
-const userSchemas_1 = require("../validators/userSchemas");
-const userController = {
+const clientSchemas_1 = require("../validators/clientSchemas");
+const clientController = {
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const payload = parseWithZod(userSchemas_1.createUserSchema, req.body);
-                const user = yield userService_1.default.createUser(payload);
-                res.status(201).json(user);
+                const { companyId } = parseWithZod(clientSchemas_1.clientCompanyParamSchema, req.params);
+                const payload = parseWithZod(clientSchemas_1.createClientSchema, req.body);
+                const client = yield clientService_1.default.createClient(companyId, payload);
+                res.status(201).json(client);
             }
             catch (error) {
                 handleControllerError(res, error);
             }
         });
     },
-    list(_req, res) {
+    list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const users = yield userService_1.default.getUsers();
-                res.json(users);
+                const { companyId } = parseWithZod(clientSchemas_1.clientCompanyParamSchema, req.params);
+                const clients = yield clientService_1.default.getClientsByCompany(companyId);
+                res.json(clients);
             }
             catch (error) {
                 handleControllerError(res, error);
@@ -43,9 +45,9 @@ const userController = {
     getById(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const { id } = parseWithZod(userSchemas_1.userIdParamSchema, req.params);
-                const user = yield userService_1.default.getUserById(id);
-                res.json(user);
+                const { companyId, clientId } = parseWithZod(clientSchemas_1.clientIdParamSchema, req.params);
+                const client = yield clientService_1.default.getClientById(companyId, clientId);
+                res.json(client);
             }
             catch (error) {
                 handleControllerError(res, error);
@@ -56,10 +58,10 @@ const userController = {
         return __awaiter(this, void 0, void 0, function* () {
             var _a;
             try {
-                const { id } = parseWithZod(userSchemas_1.userIdParamSchema, req.params);
-                const payload = parseWithZod(userSchemas_1.updateUserSchema, (_a = req.body) !== null && _a !== void 0 ? _a : {});
-                const user = yield userService_1.default.updateUser(id, payload);
-                res.json(user);
+                const { companyId, clientId } = parseWithZod(clientSchemas_1.clientIdParamSchema, req.params);
+                const payload = parseWithZod(clientSchemas_1.updateClientSchema, (_a = req.body) !== null && _a !== void 0 ? _a : {});
+                const client = yield clientService_1.default.updateClient(companyId, clientId, payload);
+                res.json(client);
             }
             catch (error) {
                 handleControllerError(res, error);
@@ -69,21 +71,9 @@ const userController = {
     remove(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const { id } = parseWithZod(userSchemas_1.userIdParamSchema, req.params);
-                yield userService_1.default.deleteUser(id);
+                const { companyId, clientId } = parseWithZod(clientSchemas_1.clientIdParamSchema, req.params);
+                yield clientService_1.default.deleteClient(companyId, clientId);
                 res.status(204).send();
-            }
-            catch (error) {
-                handleControllerError(res, error);
-            }
-        });
-    },
-    authenticate(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const payload = parseWithZod(userSchemas_1.authenticateUserSchema, req.body);
-                const user = yield userService_1.default.verifyCredentials(payload.email, payload.password);
-                res.json(user);
             }
             catch (error) {
                 handleControllerError(res, error);
@@ -118,4 +108,4 @@ function formatZodIssues(error) {
     })
         .join("; ");
 }
-exports.default = userController;
+exports.default = clientController;
