@@ -1,0 +1,18 @@
+0 verbose cli /home/joaoandredemedeirosarnaud/repos/advanced-crm-api/.local/node-v20.17.0-linux-x64/bin/node /home/joaoandredemedeirosarnaud/repos/advanced-crm-api/.local/node-v20.17.0-linux-x64/lib/node_modules/npm/bin/npm-cli.js
+1 info using npm@10.8.2
+2 info using node@v20.17.0
+3 silly config load:file:/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/.local/node-v20.17.0-linux-x64/lib/node_modules/npm/npmrc
+4 silly config load:file:/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/.npmrc
+5 silly config load:file:/home/joaoandredemedeirosarnaud/.npmrc
+6 silly config load:file:/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/.local/node-v20.17.0-linux-x64/etc/npmrc
+7 verbose title npm exec prisma generate
+8 verbose argv "exec" "--" "prisma" "generate"
+9 verbose logfile logs-max:10 dir:/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/.npm-cache/_logs/2025-10-17T13_29_29_311Z-
+10 verbose logfile /home/joaoandredemedeirosarnaud/repos/advanced-crm-api/.npm-cache/_logs/2025-10-17T13_29_29_311Z-debug-0.log
+11 silly logfile done cleaning log files
+12 verbose cwd /home/joaoandredemedeirosarnaud/repos/advanced-crm-api
+13 verbose os Linux 6.16.12-200.fc42.x86_64
+14 verbose node v20.17.0
+15 verbose npm  v10.8.2
+16 verbose exit 0
+17 info ok

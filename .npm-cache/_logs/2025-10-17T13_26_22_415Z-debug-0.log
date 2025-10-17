@@ -1,0 +1,938 @@
+0 verbose cli /home/joaoandredemedeirosarnaud/repos/advanced-crm-api/.local/node-v20.17.0-linux-x64/bin/node /home/joaoandredemedeirosarnaud/repos/advanced-crm-api/.local/node-v20.17.0-linux-x64/bin/npm
+1 info using npm@10.8.2
+2 info using node@v20.17.0
+3 silly config load:file:/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/.local/node-v20.17.0-linux-x64/lib/node_modules/npm/npmrc
+4 silly config load:file:/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/.npmrc
+5 silly config load:file:/home/joaoandredemedeirosarnaud/.npmrc
+6 silly config load:file:/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/.local/node-v20.17.0-linux-x64/etc/npmrc
+7 verbose title npm install
+8 verbose argv "install"
+9 verbose logfile logs-max:10 dir:/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/.npm-cache/_logs/2025-10-17T13_26_22_415Z-
+10 verbose logfile /home/joaoandredemedeirosarnaud/repos/advanced-crm-api/.npm-cache/_logs/2025-10-17T13_26_22_415Z-debug-0.log
+11 silly packumentCache heap:2197815296 maxSize:549453824 maxEntrySize:274726912
+12 silly logfile done cleaning log files
+13 http fetch GET https://registry.npmjs.org/npm attempt 1 failed with EAI_AGAIN
+14 silly idealTree buildDeps
+15 verbose shrinkwrap failed to load node_modules/.package-lock.json out of date, updated: node_modules
+16 silly reify mark retired [
+16 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/argon2'
+16 silly reify ]
+17 silly reify mark retired [
+17 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/argparse'
+17 silly reify ]
+18 silly reify mark retired [
+18 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/c12'
+18 silly reify ]
+19 silly reify mark retired [
+19 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/call-me-maybe'
+19 silly reify ]
+20 silly reify mark retired [
+20 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/citty'
+20 silly reify ]
+21 silly reify mark retired [
+21 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/commander'
+21 silly reify ]
+22 silly reify mark retired [
+22 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/confbox'
+22 silly reify ]
+23 silly reify mark retired [
+23 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/consola'
+23 silly reify ]
+24 silly reify mark retired [
+24 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/cross-env'
+24 silly reify ]
+25 silly reify mark retired [
+25 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/cross-spawn'
+25 silly reify ]
+26 silly reify mark retired [
+26 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/deepmerge-ts'
+26 silly reify ]
+27 silly reify mark retired [
+27 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/defu'
+27 silly reify ]
+28 silly reify mark retired [
+28 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/destr'
+28 silly reify ]
+29 silly reify mark retired [
+29 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/doctrine'
+29 silly reify ]
+30 silly reify mark retired [
+30 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/dotenv'
+30 silly reify ]
+31 silly reify mark retired [
+31 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/effect'
+31 silly reify ]
+32 silly reify mark retired [
+32 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/empathic'
+32 silly reify ]
+33 silly reify mark retired [
+33 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/esbuild'
+33 silly reify ]
+34 silly reify mark retired [
+34 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/esutils'
+34 silly reify ]
+35 silly reify mark retired [
+35 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/exsolve'
+35 silly reify ]
+36 silly reify mark retired [
+36 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/fast-check'
+36 silly reify ]
+37 silly reify mark retired [
+37 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/fs.realpath'
+37 silly reify ]
+38 silly reify mark retired [
+38 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/fsevents'
+38 silly reify ]
+39 silly reify mark retired [
+39 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/get-tsconfig'
+39 silly reify ]
+40 silly reify mark retired [
+40 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/giget'
+40 silly reify ]
+41 silly reify mark retired [
+41 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/glob'
+41 silly reify ]
+42 silly reify mark retired [
+42 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/inflight'
+42 silly reify ]
+43 silly reify mark retired [
+43 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/isexe'
+43 silly reify ]
+44 silly reify mark retired [
+44 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/jiti'
+44 silly reify ]
+45 silly reify mark retired [
+45 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/js-yaml'
+45 silly reify ]
+46 silly reify mark retired [
+46 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/lodash.get'
+46 silly reify ]
+47 silly reify mark retired [
+47 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/lodash.isequal'
+47 silly reify ]
+48 silly reify mark retired [
+48 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/lodash.mergewith'
+48 silly reify ]
+49 silly reify mark retired [
+49 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/node-addon-api'
+49 silly reify ]
+50 silly reify mark retired [
+50 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/node-fetch-native'
+50 silly reify ]
+51 silly reify mark retired [
+51 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/node-gyp-build'
+51 silly reify ]
+52 silly reify mark retired [
+52 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/nypm'
+52 silly reify ]
+53 silly reify mark retired [
+53 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/ohash'
+53 silly reify ]
+54 silly reify mark retired [
+54 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/openapi-types'
+54 silly reify ]
+55 silly reify mark retired [
+55 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/path-is-absolute'
+55 silly reify ]
+56 silly reify mark retired [
+56 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/path-key'
+56 silly reify ]
+57 silly reify mark retired [
+57 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/pathe'
+57 silly reify ]
+58 silly reify mark retired [
+58 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/perfect-debounce'
+58 silly reify ]
+59 silly reify mark retired [
+59 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/pkg-types'
+59 silly reify ]
+60 silly reify mark retired [
+60 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/prisma'
+60 silly reify ]
+61 silly reify mark retired [
+61 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/pure-rand'
+61 silly reify ]
+62 silly reify mark retired [
+62 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/rc9'
+62 silly reify ]
+63 silly reify mark retired [
+63 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/resolve-pkg-maps'
+63 silly reify ]
+64 silly reify mark retired [
+64 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/shebang-command'
+64 silly reify ]
+65 silly reify mark retired [
+65 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/shebang-regex'
+65 silly reify ]
+66 silly reify mark retired [
+66 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/swagger-jsdoc'
+66 silly reify ]
+67 silly reify mark retired [
+67 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/swagger-parser'
+67 silly reify ]
+68 silly reify mark retired [
+68 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/swagger-ui-dist'
+68 silly reify ]
+69 silly reify mark retired [
+69 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/swagger-ui-express'
+69 silly reify ]
+70 silly reify mark retired [
+70 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/tinyexec'
+70 silly reify ]
+71 silly reify mark retired [
+71 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/tsx'
+71 silly reify ]
+72 silly reify mark retired [
+72 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/validator'
+72 silly reify ]
+73 silly reify mark retired [
+73 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/which'
+73 silly reify ]
+74 silly reify mark retired [
+74 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/yaml'
+74 silly reify ]
+75 silly reify mark retired [
+75 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/z-schema'
+75 silly reify ]
+76 silly reify mark retired [
+76 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@apidevtools/json-schema-ref-parser'
+76 silly reify ]
+77 silly reify mark retired [
+77 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/zod'
+77 silly reify ]
+78 silly reify mark retired [
+78 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@apidevtools/swagger-methods'
+78 silly reify ]
+79 silly reify mark retired [
+79 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@apidevtools/openapi-schemas'
+79 silly reify ]
+80 silly reify mark retired [
+80 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@apidevtools/swagger-parser'
+80 silly reify ]
+81 silly reify mark retired [
+81 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@epic-web/invariant'
+81 silly reify ]
+82 silly reify mark retired [
+82 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/android-arm64'
+82 silly reify ]
+83 silly reify mark retired [
+83 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/android-arm'
+83 silly reify ]
+84 silly reify mark retired [
+84 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/aix-ppc64'
+84 silly reify ]
+85 silly reify mark retired [
+85 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/android-x64'
+85 silly reify ]
+86 silly reify mark retired [
+86 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/darwin-x64'
+86 silly reify ]
+87 silly reify mark retired [
+87 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/freebsd-x64'
+87 silly reify ]
+88 silly reify mark retired [
+88 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/darwin-arm64'
+88 silly reify ]
+89 silly reify mark retired [
+89 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/freebsd-arm64'
+89 silly reify ]
+90 silly reify mark retired [
+90 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/linux-arm'
+90 silly reify ]
+91 silly reify mark retired [
+91 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/linux-arm64'
+91 silly reify ]
+92 silly reify mark retired [
+92 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/linux-mips64el'
+92 silly reify ]
+93 silly reify mark retired [
+93 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/linux-ia32'
+93 silly reify ]
+94 silly reify mark retired [
+94 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/linux-loong64'
+94 silly reify ]
+95 silly reify mark retired [
+95 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/linux-ppc64'
+95 silly reify ]
+96 silly reify mark retired [
+96 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/linux-riscv64'
+96 silly reify ]
+97 silly reify mark retired [
+97 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/linux-x64'
+97 silly reify ]
+98 silly reify mark retired [
+98 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/netbsd-arm64'
+98 silly reify ]
+99 silly reify mark retired [
+99 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/linux-s390x'
+99 silly reify ]
+100 silly reify mark retired [
+100 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/netbsd-x64'
+100 silly reify ]
+101 silly reify mark retired [
+101 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/openbsd-x64'
+101 silly reify ]
+102 silly reify mark retired [
+102 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/openbsd-arm64'
+102 silly reify ]
+103 silly reify mark retired [
+103 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/sunos-x64'
+103 silly reify ]
+104 silly reify mark retired [
+104 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/openharmony-arm64'
+104 silly reify ]
+105 silly reify mark retired [
+105 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/win32-arm64'
+105 silly reify ]
+106 silly reify mark retired [
+106 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/win32-x64'
+106 silly reify ]
+107 silly reify mark retired [
+107 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/win32-ia32'
+107 silly reify ]
+108 silly reify mark retired [
+108 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@jsdevtools/ono'
+108 silly reify ]
+109 silly reify mark retired [
+109 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@prisma/client'
+109 silly reify ]
+110 silly reify mark retired [
+110 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@phc/format'
+110 silly reify ]
+111 silly reify mark retired [
+111 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@prisma/debug'
+111 silly reify ]
+112 silly reify mark retired [
+112 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@prisma/config'
+112 silly reify ]
+113 silly reify mark retired [
+113 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@prisma/engines'
+113 silly reify ]
+114 silly reify mark retired [
+114 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@prisma/engines-version'
+114 silly reify ]
+115 silly reify mark retired [
+115 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@prisma/fetch-engine'
+115 silly reify ]
+116 silly reify mark retired [
+116 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@prisma/get-platform'
+116 silly reify ]
+117 silly reify mark retired [
+117 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@scarf/scarf'
+117 silly reify ]
+118 silly reify mark retired [
+118 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@standard-schema/spec'
+118 silly reify ]
+119 silly reify mark retired [
+119 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@types/json-schema'
+119 silly reify ]
+120 silly reify mark retired [
+120 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@types/swagger-ui-express'
+120 silly reify ]
+121 silly reify mark retired [
+121 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@types/swagger-jsdoc'
+121 silly reify ]
+122 silly reify moves {
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/argon2': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.argon2-dk4nth9z',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/argparse': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.argparse-e7ScXwlQ',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/c12': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.c12-X2AdypmT',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/call-me-maybe': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.call-me-maybe-6hAKP3UI',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/citty': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.citty-r2AWRGZv',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/commander': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.commander-1LOzfN1x',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/confbox': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.confbox-SEtNiW75',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/consola': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.consola-9hMCqoqO',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/cross-env': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.cross-env-Mm9J3RMG',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/cross-spawn': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.cross-spawn-ZkJ4bNzo',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/deepmerge-ts': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.deepmerge-ts-fqwEFTR6',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/defu': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.defu-F5ybeB0L',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/destr': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.destr-Bhqfumk7',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/doctrine': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.doctrine-o2VYwSeL',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/dotenv': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.dotenv-WZO5gMoG',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/effect': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.effect-7D1acvWc',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/empathic': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.empathic-pOHLQH5x',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/esbuild': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.esbuild-mn28GKhc',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/esutils': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.esutils-ZM5r1Vk3',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/exsolve': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.exsolve-P4bl09cc',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/fast-check': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.fast-check-JFLH4UIQ',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/fs.realpath': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.fs.realpath-SorcwnQA',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/fsevents': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.fsevents-4krS4aZK',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/get-tsconfig': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.get-tsconfig-3nHNjGMC',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/giget': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.giget-OvPIoiaw',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/glob': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.glob-RSlQdkop',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/inflight': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.inflight-WUvkGz3O',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/isexe': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.isexe-1K0HuOan',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/jiti': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.jiti-RpgWjZQ3',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/js-yaml': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.js-yaml-pIsLi0pu',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/lodash.get': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.lodash.get-OQGkdA4N',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/lodash.isequal': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.lodash.isequal-7TfVsa9e',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/lodash.mergewith': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.lodash.mergewith-VeR4SQ0P',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/node-addon-api': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.node-addon-api-UIbhuJeU',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/node-fetch-native': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.node-fetch-native-7uMNj7lz',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/node-gyp-build': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.node-gyp-build-0IfUGzfG',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/nypm': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.nypm-IZI1Ja5l',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/ohash': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.ohash-nXTGuXET',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/openapi-types': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.openapi-types-WgcHUY55',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/path-is-absolute': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.path-is-absolute-YOBUByn7',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/path-key': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.path-key-aQ1WryOr',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/pathe': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.pathe-o3ULLzMp',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/perfect-debounce': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.perfect-debounce-riBnKQfe',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/pkg-types': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.pkg-types-MAJN3NuW',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/prisma': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.prisma-7AFwBbbq',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/pure-rand': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.pure-rand-Jn4IIbLp',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/rc9': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.rc9-YmwyEI0l',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/resolve-pkg-maps': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.resolve-pkg-maps-ipJv6SBf',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/shebang-command': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.shebang-command-P0mBN3oe',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/shebang-regex': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.shebang-regex-cwaaE4ec',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/swagger-jsdoc': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.swagger-jsdoc-aMi6ILS1',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/swagger-parser': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.swagger-parser-amY3Y2sI',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/swagger-ui-dist': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.swagger-ui-dist-e5QHzTux',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/swagger-ui-express': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.swagger-ui-express-bfz0nKEH',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/tinyexec': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.tinyexec-a9gxxLuu',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/tsx': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.tsx-uqp1Awlf',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/validator': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.validator-HUs7dqpA',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/which': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.which-ScqPdA16',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/yaml': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.yaml-Rb4kIuyt',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/z-schema': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.z-schema-ETmUUDCC',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@apidevtools/json-schema-ref-parser': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@apidevtools/.json-schema-ref-parser-XMaNsvxz',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/zod': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/.zod-n9iYjnKC',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@apidevtools/swagger-methods': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@apidevtools/.swagger-methods-Rmv5Q9rV',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@apidevtools/openapi-schemas': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@apidevtools/.openapi-schemas-Xr0tgWVs',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@apidevtools/swagger-parser': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@apidevtools/.swagger-parser-2LOGk1b6',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@epic-web/invariant': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@epic-web/.invariant-Ap2xHi21',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/android-arm64': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/.android-arm64-5yfaslqv',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/android-arm': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/.android-arm-BoXPuVoH',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/aix-ppc64': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/.aix-ppc64-2WXIRcwc',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/android-x64': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/.android-x64-HHCCo0WI',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/darwin-x64': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/.darwin-x64-7MbG2xkK',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/freebsd-x64': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/.freebsd-x64-IUbXT4Xg',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/darwin-arm64': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/.darwin-arm64-I1z3ZRyP',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/freebsd-arm64': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/.freebsd-arm64-TWRC3ixI',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/linux-arm': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/.linux-arm-I5p2jLAY',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/linux-arm64': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/.linux-arm64-ChJ5iOnS',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/linux-mips64el': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/.linux-mips64el-u3BBJx72',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/linux-ia32': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/.linux-ia32-o8cDyaxl',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/linux-loong64': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/.linux-loong64-PBuY1kmY',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/linux-ppc64': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/.linux-ppc64-BiLg3WuV',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/linux-riscv64': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/.linux-riscv64-OVVepTDN',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/linux-x64': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/.linux-x64-QXzjjAFA',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/netbsd-arm64': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/.netbsd-arm64-FfYJIUvr',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/linux-s390x': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/.linux-s390x-Ot6UE4cF',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/netbsd-x64': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/.netbsd-x64-FfRu1mI2',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/openbsd-x64': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/.openbsd-x64-pNJbrvOj',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/openbsd-arm64': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/.openbsd-arm64-Hd7mjlVu',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/sunos-x64': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/.sunos-x64-39oCHLse',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/openharmony-arm64': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/.openharmony-arm64-rZ4p9jP9',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/win32-arm64': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/.win32-arm64-5bUKhowY',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/win32-x64': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/.win32-x64-Cq4uhD7c',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/win32-ia32': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/.win32-ia32-LXhd0NBk',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@jsdevtools/ono': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@jsdevtools/.ono-2rFvjEsB',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@prisma/client': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@prisma/.client-my56dBUp',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@phc/format': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@phc/.format-A1MU2xbs',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@prisma/debug': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@prisma/.debug-eBVfGf0m',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@prisma/config': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@prisma/.config-Xkw40jeu',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@prisma/engines': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@prisma/.engines-x9zVF5K2',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@prisma/engines-version': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@prisma/.engines-version-GBpAkTmh',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@prisma/fetch-engine': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@prisma/.fetch-engine-0HwrmFxu',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@prisma/get-platform': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@prisma/.get-platform-H4R0IZq8',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@scarf/scarf': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@scarf/.scarf-skTXYJFL',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@standard-schema/spec': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@standard-schema/.spec-R7wKjzVh',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@types/json-schema': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@types/.json-schema-V3NDlWJa',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@types/swagger-ui-express': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@types/.swagger-ui-express-iXkQCdm7',
+122 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@types/swagger-jsdoc': '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@types/.swagger-jsdoc-v6zCwieP'
+122 silly reify }
+123 silly audit bulk request {
+123 silly audit   '@apidevtools/json-schema-ref-parser': [ '9.1.2' ],
+123 silly audit   '@apidevtools/openapi-schemas': [ '2.1.0' ],
+123 silly audit   '@apidevtools/swagger-methods': [ '3.0.2' ],
+123 silly audit   '@apidevtools/swagger-parser': [ '10.0.3' ],
+123 silly audit   '@cspotcode/source-map-support': [ '0.8.1' ],
+123 silly audit   '@epic-web/invariant': [ '1.0.0' ],
+123 silly audit   '@esbuild/aix-ppc64': [ '0.25.10' ],
+123 silly audit   '@esbuild/android-arm': [ '0.25.10' ],
+123 silly audit   '@esbuild/android-arm64': [ '0.25.10' ],
+123 silly audit   '@esbuild/android-x64': [ '0.25.10' ],
+123 silly audit   '@esbuild/darwin-arm64': [ '0.25.10' ],
+123 silly audit   '@esbuild/darwin-x64': [ '0.25.10' ],
+123 silly audit   '@esbuild/freebsd-arm64': [ '0.25.10' ],
+123 silly audit   '@esbuild/freebsd-x64': [ '0.25.10' ],
+123 silly audit   '@esbuild/linux-arm': [ '0.25.10' ],
+123 silly audit   '@esbuild/linux-arm64': [ '0.25.10' ],
+123 silly audit   '@esbuild/linux-ia32': [ '0.25.10' ],
+123 silly audit   '@esbuild/linux-loong64': [ '0.25.10' ],
+123 silly audit   '@esbuild/linux-mips64el': [ '0.25.10' ],
+123 silly audit   '@esbuild/linux-ppc64': [ '0.25.10' ],
+123 silly audit   '@esbuild/linux-riscv64': [ '0.25.10' ],
+123 silly audit   '@esbuild/linux-s390x': [ '0.25.10' ],
+123 silly audit   '@esbuild/linux-x64': [ '0.25.10' ],
+123 silly audit   '@esbuild/netbsd-arm64': [ '0.25.10' ],
+123 silly audit   '@esbuild/netbsd-x64': [ '0.25.10' ],
+123 silly audit   '@esbuild/openbsd-arm64': [ '0.25.10' ],
+123 silly audit   '@esbuild/openbsd-x64': [ '0.25.10' ],
+123 silly audit   '@esbuild/openharmony-arm64': [ '0.25.10' ],
+123 silly audit   '@esbuild/sunos-x64': [ '0.25.10' ],
+123 silly audit   '@esbuild/win32-arm64': [ '0.25.10' ],
+123 silly audit   '@esbuild/win32-ia32': [ '0.25.10' ],
+123 silly audit   '@esbuild/win32-x64': [ '0.25.10' ],
+123 silly audit   '@jridgewell/resolve-uri': [ '3.1.2' ],
+123 silly audit   '@jridgewell/sourcemap-codec': [ '1.5.5' ],
+123 silly audit   '@jridgewell/trace-mapping': [ '0.3.9' ],
+123 silly audit   '@jsdevtools/ono': [ '7.1.3' ],
+123 silly audit   '@phc/format': [ '1.0.0' ],
+123 silly audit   '@prisma/client': [ '6.16.3' ],
+123 silly audit   '@prisma/config': [ '6.16.3' ],
+123 silly audit   '@prisma/debug': [ '6.16.3' ],
+123 silly audit   '@prisma/engines': [ '6.16.3' ],
+123 silly audit   '@prisma/engines-version': [ '6.16.1-1.bb420e667c1820a8c05a38023385f6cc7ef8e83a' ],
+123 silly audit   '@prisma/fetch-engine': [ '6.16.3' ],
+123 silly audit   '@prisma/get-platform': [ '6.16.3' ],
+123 silly audit   '@scarf/scarf': [ '1.4.0' ],
+123 silly audit   '@standard-schema/spec': [ '1.0.0' ],
+123 silly audit   '@tsconfig/node10': [ '1.0.11' ],
+123 silly audit   '@tsconfig/node12': [ '1.0.11' ],
+123 silly audit   '@tsconfig/node14': [ '1.0.3' ],
+123 silly audit   '@tsconfig/node16': [ '1.0.4' ],
+123 silly audit   '@types/body-parser': [ '1.19.6' ],
+123 silly audit   '@types/connect': [ '3.4.38' ],
+123 silly audit   '@types/express': [ '5.0.3' ],
+123 silly audit   '@types/express-serve-static-core': [ '5.0.7' ],
+123 silly audit   '@types/http-errors': [ '2.0.5' ],
+123 silly audit   '@types/json-schema': [ '7.0.15' ],
+123 silly audit   '@types/mime': [ '1.3.5' ],
+123 silly audit   '@types/node': [ '24.6.0' ],
+123 silly audit   '@types/qs': [ '6.14.0' ],
+123 silly audit   '@types/range-parser': [ '1.2.7' ],
+123 silly audit   '@types/send': [ '0.17.5' ],
+123 silly audit   '@types/serve-static': [ '1.15.8' ],
+123 silly audit   '@types/swagger-jsdoc': [ '6.0.4' ],
+123 silly audit   '@types/swagger-ui-express': [ '4.1.8' ],
+123 silly audit   accepts: [ '2.0.0' ],
+123 silly audit   acorn: [ '8.15.0' ],
+123 silly audit   'acorn-walk': [ '8.3.4' ],
+123 silly audit   anymatch: [ '3.1.3' ],
+123 silly audit   arg: [ '4.1.3' ],
+123 silly audit   argon2: [ '0.44.0' ],
+123 silly audit   argparse: [ '2.0.1' ],
+123 silly audit   'balanced-match': [ '1.0.2' ],
+123 silly audit   'binary-extensions': [ '2.3.0' ],
+123 silly audit   'body-parser': [ '2.2.0' ],
+123 silly audit   'brace-expansion': [ '1.1.12' ],
+123 silly audit   braces: [ '3.0.3' ],
+123 silly audit   bytes: [ '3.1.2' ],
+123 silly audit   c12: [ '3.1.0' ],
+123 silly audit   chokidar: [ '4.0.3', '3.6.0' ],
+123 silly audit   dotenv: [ '16.6.1', '17.2.3' ],
+123 silly audit   readdirp: [ '4.1.2', '3.6.0' ],
+123 silly audit   'call-bind-apply-helpers': [ '1.0.2' ],
+123 silly audit   'call-bound': [ '1.0.4' ],
+123 silly audit   'call-me-maybe': [ '1.0.2' ],
+123 silly audit   citty: [ '0.1.6' ],
+123 silly audit   commander: [ '6.2.0', '9.5.0' ],
+123 silly audit   'concat-map': [ '0.0.1' ],
+123 silly audit   confbox: [ '0.2.2' ],
+123 silly audit   consola: [ '3.4.2' ],
+123 silly audit   'content-disposition': [ '1.0.0' ],
+123 silly audit   'content-type': [ '1.0.5' ],
+123 silly audit   cookie: [ '0.7.2' ],
+123 silly audit   'cookie-signature': [ '1.2.2' ],
+123 silly audit   'create-require': [ '1.1.1' ],
+123 silly audit   'cross-env': [ '10.1.0' ],
+123 silly audit   'cross-spawn': [ '7.0.6' ],
+123 silly audit   debug: [ '4.4.3' ],
+123 silly audit   'deepmerge-ts': [ '7.1.5' ],
+123 silly audit   defu: [ '6.1.4' ],
+123 silly audit   depd: [ '2.0.0' ],
+123 silly audit   destr: [ '2.0.5' ],
+123 silly audit   diff: [ '4.0.2' ],
+123 silly audit   doctrine: [ '3.0.0' ],
+123 silly audit   'dunder-proto': [ '1.0.1' ],
+123 silly audit   'ee-first': [ '1.1.1' ],
+123 silly audit   effect: [ '3.16.12' ],
+123 silly audit   empathic: [ '2.0.0' ],
+123 silly audit   encodeurl: [ '2.0.0' ],
+123 silly audit   'es-define-property': [ '1.0.1' ],
+123 silly audit   'es-errors': [ '1.3.0' ],
+123 silly audit   'es-object-atoms': [ '1.1.1' ],
+123 silly audit   esbuild: [ '0.25.10' ],
+123 silly audit   'escape-html': [ '1.0.3' ],
+123 silly audit   esutils: [ '2.0.3' ],
+123 silly audit   etag: [ '1.8.1' ],
+123 silly audit   express: [ '5.1.0' ],
+123 silly audit   exsolve: [ '1.0.7' ],
+123 silly audit   'fast-check': [ '3.23.2' ],
+123 silly audit   'fill-range': [ '7.1.1' ],
+123 silly audit   finalhandler: [ '2.1.0' ],
+123 silly audit   forwarded: [ '0.2.0' ],
+123 silly audit   fresh: [ '2.0.0' ],
+123 silly audit   'fs.realpath': [ '1.0.0' ],
+123 silly audit   fsevents: [ '2.3.3' ],
+123 silly audit   'function-bind': [ '1.1.2' ],
+123 silly audit   'get-intrinsic': [ '1.3.0' ],
+123 silly audit   'get-proto': [ '1.0.1' ],
+123 silly audit   'get-tsconfig': [ '4.10.1' ],
+123 silly audit   giget: [ '2.0.0' ],
+123 silly audit   glob: [ '7.1.6' ],
+123 silly audit   'glob-parent': [ '5.1.2' ],
+123 silly audit   gopd: [ '1.2.0' ],
+123 silly audit   'has-flag': [ '3.0.0' ],
+123 silly audit   'has-symbols': [ '1.1.0' ],
+123 silly audit   hasown: [ '2.0.2' ],
+123 silly audit   'http-errors': [ '2.0.0' ],
+123 silly audit   statuses: [ '2.0.1', '2.0.2' ],
+123 silly audit   'iconv-lite': [ '0.6.3', '0.7.0' ],
+123 silly audit   'ignore-by-default': [ '1.0.1' ],
+123 silly audit   inflight: [ '1.0.6' ],
+123 silly audit   inherits: [ '2.0.4' ],
+123 silly audit   'ipaddr.js': [ '1.9.1' ],
+123 silly audit   'is-binary-path': [ '2.1.0' ],
+123 silly audit   'is-extglob': [ '2.1.1' ],
+123 silly audit   'is-glob': [ '4.0.3' ],
+123 silly audit   'is-number': [ '7.0.0' ],
+123 silly audit   'is-promise': [ '4.0.0' ],
+123 silly audit   isexe: [ '2.0.0' ],
+123 silly audit   jiti: [ '2.6.0' ],
+123 silly audit   'js-yaml': [ '4.1.0' ],
+123 silly audit   'lodash.get': [ '4.4.2' ],
+123 silly audit   'lodash.isequal': [ '4.5.0' ],
+123 silly audit   'lodash.mergewith': [ '4.6.2' ],
+123 silly audit   'make-error': [ '1.3.6' ],
+123 silly audit   'math-intrinsics': [ '1.1.0' ],
+123 silly audit   'media-typer': [ '1.1.0' ],
+123 silly audit   'merge-descriptors': [ '2.0.0' ],
+123 silly audit   'mime-db': [ '1.54.0' ],
+123 silly audit   'mime-types': [ '3.0.1' ],
+123 silly audit   minimatch: [ '3.1.2' ],
+123 silly audit   ms: [ '2.1.3' ],
+123 silly audit   negotiator: [ '1.0.0' ],
+123 silly audit   'node-addon-api': [ '8.5.0' ],
+123 silly audit   'node-fetch-native': [ '1.6.7' ],
+123 silly audit   'node-gyp-build': [ '4.8.4' ],
+123 silly audit   nodemon: [ '3.1.10' ],
+123 silly audit   'normalize-path': [ '3.0.0' ],
+123 silly audit   nypm: [ '0.6.2' ],
+123 silly audit   'object-inspect': [ '1.13.4' ],
+123 silly audit   ohash: [ '2.0.11' ],
+123 silly audit   'on-finished': [ '2.4.1' ],
+123 silly audit   once: [ '1.4.0' ],
+123 silly audit   'openapi-types': [ '12.1.3' ],
+123 silly audit   parseurl: [ '1.3.3' ],
+123 silly audit   'path-is-absolute': [ '1.0.1' ],
+123 silly audit   'path-key': [ '3.1.1' ],
+123 silly audit   'path-to-regexp': [ '8.3.0' ],
+123 silly audit   pathe: [ '2.0.3' ],
+123 silly audit   'perfect-debounce': [ '1.0.0' ],
+123 silly audit   picomatch: [ '2.3.1' ],
+123 silly audit   'pkg-types': [ '2.3.0' ],
+123 silly audit   prisma: [ '6.16.3' ],
+123 silly audit   'proxy-addr': [ '2.0.7' ],
+123 silly audit   'pstree.remy': [ '1.1.8' ],
+123 silly audit   'pure-rand': [ '6.1.0' ],
+123 silly audit   qs: [ '6.14.0' ],
+123 silly audit   'range-parser': [ '1.2.1' ],
+123 silly audit   'raw-body': [ '3.0.1' ],
+123 silly audit   rc9: [ '2.1.2' ],
+123 silly audit   'resolve-pkg-maps': [ '1.0.0' ],
+123 silly audit   router: [ '2.2.0' ],
+123 silly audit   'safe-buffer': [ '5.2.1' ],
+123 silly audit   'safer-buffer': [ '2.1.2' ],
+123 silly audit   semver: [ '7.7.2' ],
+123 silly audit   send: [ '1.2.0' ],
+123 silly audit   'serve-static': [ '2.2.0' ],
+123 silly audit   setprototypeof: [ '1.2.0' ],
+123 silly audit   'shebang-command': [ '2.0.0' ],
+123 silly audit   'shebang-regex': [ '3.0.0' ],
+123 silly audit   'side-channel': [ '1.1.0' ],
+123 silly audit   'side-channel-list': [ '1.0.0' ],
+123 silly audit   'side-channel-map': [ '1.0.1' ],
+123 silly audit   'side-channel-weakmap': [ '1.0.2' ],
+123 silly audit   'simple-update-notifier': [ '2.0.0' ],
+123 silly audit   'supports-color': [ '5.5.0' ],
+123 silly audit   'swagger-jsdoc': [ '6.2.8' ],
+123 silly audit   'swagger-parser': [ '10.0.3' ],
+123 silly audit   'swagger-ui-dist': [ '5.29.1' ],
+123 silly audit   'swagger-ui-express': [ '5.0.1' ],
+123 silly audit   tinyexec: [ '1.0.1' ],
+123 silly audit   'to-regex-range': [ '5.0.1' ],
+123 silly audit   toidentifier: [ '1.0.1' ],
+123 silly audit   touch: [ '3.1.1' ],
+123 silly audit   'ts-node': [ '10.9.2' ],
+123 silly audit   tsx: [ '4.20.6' ],
+123 silly audit   'type-is': [ '2.0.1' ],
+123 silly audit   typescript: [ '5.9.2' ],
+123 silly audit   undefsafe: [ '2.0.5' ],
+123 silly audit   'undici-types': [ '7.13.0' ],
+123 silly audit   unpipe: [ '1.0.0' ],
+123 silly audit   'v8-compile-cache-lib': [ '3.0.1' ],
+123 silly audit   validator: [ '13.15.15' ],
+123 silly audit   vary: [ '1.1.2' ],
+123 silly audit   which: [ '2.0.2' ],
+123 silly audit   wrappy: [ '1.0.2' ],
+123 silly audit   yaml: [ '2.0.0-1' ],
+123 silly audit   yn: [ '3.1.1' ],
+123 silly audit   'z-schema': [ '5.0.5' ],
+123 silly audit   zod: [ '4.1.11' ]
+123 silly audit }
+124 verbose reify failed optional dependency /home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/win32-ia32
+125 silly reify mark deleted [
+125 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/win32-ia32'
+125 silly reify ]
+126 verbose reify failed optional dependency /home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/win32-x64
+127 silly reify mark deleted [
+127 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/win32-x64'
+127 silly reify ]
+128 verbose reify failed optional dependency /home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/win32-arm64
+129 silly reify mark deleted [
+129 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/win32-arm64'
+129 silly reify ]
+130 verbose reify failed optional dependency /home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/openharmony-arm64
+131 silly reify mark deleted [
+131 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/openharmony-arm64'
+131 silly reify ]
+132 verbose reify failed optional dependency /home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/sunos-x64
+133 silly reify mark deleted [
+133 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/sunos-x64'
+133 silly reify ]
+134 verbose reify failed optional dependency /home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/openbsd-arm64
+135 silly reify mark deleted [
+135 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/openbsd-arm64'
+135 silly reify ]
+136 verbose reify failed optional dependency /home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/openbsd-x64
+137 silly reify mark deleted [
+137 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/openbsd-x64'
+137 silly reify ]
+138 verbose reify failed optional dependency /home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/netbsd-x64
+139 silly reify mark deleted [
+139 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/netbsd-x64'
+139 silly reify ]
+140 verbose reify failed optional dependency /home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/linux-s390x
+141 silly reify mark deleted [
+141 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/linux-s390x'
+141 silly reify ]
+142 verbose reify failed optional dependency /home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/netbsd-arm64
+143 silly reify mark deleted [
+143 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/netbsd-arm64'
+143 silly reify ]
+144 verbose reify failed optional dependency /home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/linux-riscv64
+145 silly reify mark deleted [
+145 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/linux-riscv64'
+145 silly reify ]
+146 verbose reify failed optional dependency /home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/linux-ppc64
+147 silly reify mark deleted [
+147 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/linux-ppc64'
+147 silly reify ]
+148 verbose reify failed optional dependency /home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/linux-loong64
+149 silly reify mark deleted [
+149 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/linux-loong64'
+149 silly reify ]
+150 verbose reify failed optional dependency /home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/linux-ia32
+151 silly reify mark deleted [
+151 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/linux-ia32'
+151 silly reify ]
+152 verbose reify failed optional dependency /home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/linux-mips64el
+153 silly reify mark deleted [
+153 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/linux-mips64el'
+153 silly reify ]
+154 verbose reify failed optional dependency /home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/linux-arm64
+155 silly reify mark deleted [
+155 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/linux-arm64'
+155 silly reify ]
+156 verbose reify failed optional dependency /home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/linux-arm
+157 silly reify mark deleted [
+157 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/linux-arm'
+157 silly reify ]
+158 verbose reify failed optional dependency /home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/freebsd-arm64
+159 silly reify mark deleted [
+159 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/freebsd-arm64'
+159 silly reify ]
+160 verbose reify failed optional dependency /home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/darwin-arm64
+161 silly reify mark deleted [
+161 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/darwin-arm64'
+161 silly reify ]
+162 verbose reify failed optional dependency /home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/freebsd-x64
+163 silly reify mark deleted [
+163 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/freebsd-x64'
+163 silly reify ]
+164 verbose reify failed optional dependency /home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/darwin-x64
+165 silly reify mark deleted [
+165 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/darwin-x64'
+165 silly reify ]
+166 verbose reify failed optional dependency /home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/android-x64
+167 silly reify mark deleted [
+167 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/android-x64'
+167 silly reify ]
+168 verbose reify failed optional dependency /home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/aix-ppc64
+169 silly reify mark deleted [
+169 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/aix-ppc64'
+169 silly reify ]
+170 verbose reify failed optional dependency /home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/android-arm
+171 silly reify mark deleted [
+171 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/android-arm'
+171 silly reify ]
+172 verbose reify failed optional dependency /home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/android-arm64
+173 silly reify mark deleted [
+173 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/android-arm64'
+173 silly reify ]
+174 verbose reify failed optional dependency /home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/fsevents
+175 silly reify mark deleted [
+175 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/fsevents'
+175 silly reify ]
+176 silly audit bulk request failed undefined
+177 verbose audit error FetchError: request to https://registry.npmjs.org/-/npm/v1/security/audits/quick failed, reason: getaddrinfo EAI_AGAIN registry.npmjs.org
+177 verbose audit error     at ClientRequest.<anonymous> (/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/.local/node-v20.17.0-linux-x64/lib/node_modules/npm/node_modules/minipass-fetch/lib/index.js:130:14)
+177 verbose audit error     at ClientRequest.emit (node:events:519:28)
+177 verbose audit error     at emitErrorEvent (node:_http_client:108:11)
+177 verbose audit error     at _destroy (node:_http_client:891:9)
+177 verbose audit error     at onSocketNT (node:_http_client:911:5)
+177 verbose audit error     at process.processTicksAndRejections (node:internal/process/task_queues:83:21) {
+177 verbose audit error   code: 'EAI_AGAIN',
+177 verbose audit error   errno: 'EAI_AGAIN',
+177 verbose audit error   syscall: 'getaddrinfo',
+177 verbose audit error   hostname: 'registry.npmjs.org',
+177 verbose audit error   type: 'system'
+177 verbose audit error }
+178 silly audit error undefined
+179 silly audit report null
+180 silly tarball no local data for @standard-schema/spec@https://registry.npmjs.org/@standard-schema/spec/-/spec-1.0.0.tgz. Extracting by manifest.
+181 silly tarball no local data for @types/swagger-jsdoc@https://registry.npmjs.org/@types/swagger-jsdoc/-/swagger-jsdoc-6.0.4.tgz. Extracting by manifest.
+182 silly tarball no local data for @types/swagger-ui-express@https://registry.npmjs.org/@types/swagger-ui-express/-/swagger-ui-express-4.1.8.tgz. Extracting by manifest.
+183 silly tarball no local data for @prisma/get-platform@https://registry.npmjs.org/@prisma/get-platform/-/get-platform-6.16.3.tgz. Extracting by manifest.
+184 silly tarball no local data for @types/json-schema@https://registry.npmjs.org/@types/json-schema/-/json-schema-7.0.15.tgz. Extracting by manifest.
+185 silly tarball no local data for @scarf/scarf@https://registry.npmjs.org/@scarf/scarf/-/scarf-1.4.0.tgz. Extracting by manifest.
+186 silly tarball no local data for @prisma/fetch-engine@https://registry.npmjs.org/@prisma/fetch-engine/-/fetch-engine-6.16.3.tgz. Extracting by manifest.
+187 silly tarball no local data for @prisma/engines-version@https://registry.npmjs.org/@prisma/engines-version/-/engines-version-6.16.1-1.bb420e667c1820a8c05a38023385f6cc7ef8e83a.tgz. Extracting by manifest.
+188 silly tarball no local data for @prisma/config@https://registry.npmjs.org/@prisma/config/-/config-6.16.3.tgz. Extracting by manifest.
+189 silly tarball no local data for @prisma/engines@https://registry.npmjs.org/@prisma/engines/-/engines-6.16.3.tgz. Extracting by manifest.
+190 silly tarball no local data for @prisma/debug@https://registry.npmjs.org/@prisma/debug/-/debug-6.16.3.tgz. Extracting by manifest.
+191 silly tarball no local data for @phc/format@https://registry.npmjs.org/@phc/format/-/format-1.0.0.tgz. Extracting by manifest.
+192 silly tarball no local data for @jsdevtools/ono@https://registry.npmjs.org/@jsdevtools/ono/-/ono-7.1.3.tgz. Extracting by manifest.
+193 silly tarball no local data for @prisma/client@https://registry.npmjs.org/@prisma/client/-/client-6.16.3.tgz. Extracting by manifest.
+194 silly tarball no local data for @esbuild/linux-x64@https://registry.npmjs.org/@esbuild/linux-x64/-/linux-x64-0.25.10.tgz. Extracting by manifest.
+195 silly tarball no local data for @apidevtools/swagger-parser@https://registry.npmjs.org/@apidevtools/swagger-parser/-/swagger-parser-10.0.3.tgz. Extracting by manifest.
+196 silly tarball no local data for @epic-web/invariant@https://registry.npmjs.org/@epic-web/invariant/-/invariant-1.0.0.tgz. Extracting by manifest.
+197 silly tarball no local data for @apidevtools/openapi-schemas@https://registry.npmjs.org/@apidevtools/openapi-schemas/-/openapi-schemas-2.1.0.tgz. Extracting by manifest.
+198 silly tarball no local data for @apidevtools/swagger-methods@https://registry.npmjs.org/@apidevtools/swagger-methods/-/swagger-methods-3.0.2.tgz. Extracting by manifest.
+199 silly tarball no local data for zod@https://registry.npmjs.org/zod/-/zod-4.1.11.tgz. Extracting by manifest.
+200 silly tarball no local data for z-schema@https://registry.npmjs.org/z-schema/-/z-schema-5.0.5.tgz. Extracting by manifest.
+201 silly tarball no local data for @apidevtools/json-schema-ref-parser@https://registry.npmjs.org/@apidevtools/json-schema-ref-parser/-/json-schema-ref-parser-9.1.2.tgz. Extracting by manifest.
+202 silly tarball no local data for yaml@https://registry.npmjs.org/yaml/-/yaml-2.0.0-1.tgz. Extracting by manifest.
+203 silly tarball no local data for which@https://registry.npmjs.org/which/-/which-2.0.2.tgz. Extracting by manifest.
+204 silly tarball no local data for validator@https://registry.npmjs.org/validator/-/validator-13.15.15.tgz. Extracting by manifest.
+205 silly tarball no local data for tsx@https://registry.npmjs.org/tsx/-/tsx-4.20.6.tgz. Extracting by manifest.
+206 silly tarball no local data for swagger-ui-express@https://registry.npmjs.org/swagger-ui-express/-/swagger-ui-express-5.0.1.tgz. Extracting by manifest.
+207 silly tarball no local data for tinyexec@https://registry.npmjs.org/tinyexec/-/tinyexec-1.0.1.tgz. Extracting by manifest.
+208 silly tarball no local data for swagger-ui-dist@https://registry.npmjs.org/swagger-ui-dist/-/swagger-ui-dist-5.29.1.tgz. Extracting by manifest.
+209 silly tarball no local data for swagger-parser@https://registry.npmjs.org/swagger-parser/-/swagger-parser-10.0.3.tgz. Extracting by manifest.
+210 silly tarball no local data for swagger-jsdoc@https://registry.npmjs.org/swagger-jsdoc/-/swagger-jsdoc-6.2.8.tgz. Extracting by manifest.
+211 silly tarball no local data for shebang-regex@https://registry.npmjs.org/shebang-regex/-/shebang-regex-3.0.0.tgz. Extracting by manifest.
+212 silly tarball no local data for resolve-pkg-maps@https://registry.npmjs.org/resolve-pkg-maps/-/resolve-pkg-maps-1.0.0.tgz. Extracting by manifest.
+213 silly tarball no local data for shebang-command@https://registry.npmjs.org/shebang-command/-/shebang-command-2.0.0.tgz. Extracting by manifest.
+214 silly tarball no local data for rc9@https://registry.npmjs.org/rc9/-/rc9-2.1.2.tgz. Extracting by manifest.
+215 silly tarball no local data for pure-rand@https://registry.npmjs.org/pure-rand/-/pure-rand-6.1.0.tgz. Extracting by manifest.
+216 silly tarball no local data for prisma@https://registry.npmjs.org/prisma/-/prisma-6.16.3.tgz. Extracting by manifest.
+217 silly tarball no local data for pkg-types@https://registry.npmjs.org/pkg-types/-/pkg-types-2.3.0.tgz. Extracting by manifest.
+218 silly tarball no local data for perfect-debounce@https://registry.npmjs.org/perfect-debounce/-/perfect-debounce-1.0.0.tgz. Extracting by manifest.
+219 silly tarball no local data for pathe@https://registry.npmjs.org/pathe/-/pathe-2.0.3.tgz. Extracting by manifest.
+220 silly tarball no local data for path-is-absolute@https://registry.npmjs.org/path-is-absolute/-/path-is-absolute-1.0.1.tgz. Extracting by manifest.
+221 silly tarball no local data for openapi-types@https://registry.npmjs.org/openapi-types/-/openapi-types-12.1.3.tgz. Extracting by manifest.
+222 silly tarball no local data for path-key@https://registry.npmjs.org/path-key/-/path-key-3.1.1.tgz. Extracting by manifest.
+223 silly tarball no local data for ohash@https://registry.npmjs.org/ohash/-/ohash-2.0.11.tgz. Extracting by manifest.
+224 silly tarball no local data for nypm@https://registry.npmjs.org/nypm/-/nypm-0.6.2.tgz. Extracting by manifest.
+225 silly tarball no local data for node-gyp-build@https://registry.npmjs.org/node-gyp-build/-/node-gyp-build-4.8.4.tgz. Extracting by manifest.
+226 silly tarball no local data for node-fetch-native@https://registry.npmjs.org/node-fetch-native/-/node-fetch-native-1.6.7.tgz. Extracting by manifest.
+227 silly tarball no local data for lodash.isequal@https://registry.npmjs.org/lodash.isequal/-/lodash.isequal-4.5.0.tgz. Extracting by manifest.
+228 silly tarball no local data for node-addon-api@https://registry.npmjs.org/node-addon-api/-/node-addon-api-8.5.0.tgz. Extracting by manifest.
+229 silly tarball no local data for lodash.mergewith@https://registry.npmjs.org/lodash.mergewith/-/lodash.mergewith-4.6.2.tgz. Extracting by manifest.
+230 silly tarball no local data for lodash.get@https://registry.npmjs.org/lodash.get/-/lodash.get-4.4.2.tgz. Extracting by manifest.
+231 silly tarball no local data for jiti@https://registry.npmjs.org/jiti/-/jiti-2.6.0.tgz. Extracting by manifest.
+232 silly tarball no local data for js-yaml@https://registry.npmjs.org/js-yaml/-/js-yaml-4.1.0.tgz. Extracting by manifest.
+233 silly tarball no local data for isexe@https://registry.npmjs.org/isexe/-/isexe-2.0.0.tgz. Extracting by manifest.
+234 silly tarball no local data for inflight@https://registry.npmjs.org/inflight/-/inflight-1.0.6.tgz. Extracting by manifest.
+235 silly tarball no local data for glob@https://registry.npmjs.org/glob/-/glob-7.1.6.tgz. Extracting by manifest.
+236 silly tarball no local data for get-tsconfig@https://registry.npmjs.org/get-tsconfig/-/get-tsconfig-4.10.1.tgz. Extracting by manifest.
+237 silly tarball no local data for fs.realpath@https://registry.npmjs.org/fs.realpath/-/fs.realpath-1.0.0.tgz. Extracting by manifest.
+238 silly tarball no local data for fast-check@https://registry.npmjs.org/fast-check/-/fast-check-3.23.2.tgz. Extracting by manifest.
+239 silly tarball no local data for exsolve@https://registry.npmjs.org/exsolve/-/exsolve-1.0.7.tgz. Extracting by manifest.
+240 silly tarball no local data for giget@https://registry.npmjs.org/giget/-/giget-2.0.0.tgz. Extracting by manifest.
+241 silly tarball no local data for esutils@https://registry.npmjs.org/esutils/-/esutils-2.0.3.tgz. Extracting by manifest.
+242 silly tarball no local data for esbuild@https://registry.npmjs.org/esbuild/-/esbuild-0.25.10.tgz. Extracting by manifest.
+243 silly tarball no local data for empathic@https://registry.npmjs.org/empathic/-/empathic-2.0.0.tgz. Extracting by manifest.
+244 silly tarball no local data for dotenv@https://registry.npmjs.org/dotenv/-/dotenv-17.2.3.tgz. Extracting by manifest.
+245 silly tarball no local data for effect@https://registry.npmjs.org/effect/-/effect-3.16.12.tgz. Extracting by manifest.
+246 silly tarball no local data for destr@https://registry.npmjs.org/destr/-/destr-2.0.5.tgz. Extracting by manifest.
+247 silly tarball no local data for doctrine@https://registry.npmjs.org/doctrine/-/doctrine-3.0.0.tgz. Extracting by manifest.
+248 silly tarball no local data for defu@https://registry.npmjs.org/defu/-/defu-6.1.4.tgz. Extracting by manifest.
+249 silly tarball no local data for deepmerge-ts@https://registry.npmjs.org/deepmerge-ts/-/deepmerge-ts-7.1.5.tgz. Extracting by manifest.
+250 silly tarball no local data for cross-spawn@https://registry.npmjs.org/cross-spawn/-/cross-spawn-7.0.6.tgz. Extracting by manifest.
+251 silly tarball no local data for cross-env@https://registry.npmjs.org/cross-env/-/cross-env-10.1.0.tgz. Extracting by manifest.
+252 silly tarball no local data for consola@https://registry.npmjs.org/consola/-/consola-3.4.2.tgz. Extracting by manifest.
+253 silly tarball no local data for commander@https://registry.npmjs.org/commander/-/commander-6.2.0.tgz. Extracting by manifest.
+254 silly tarball no local data for confbox@https://registry.npmjs.org/confbox/-/confbox-0.2.2.tgz. Extracting by manifest.
+255 silly tarball no local data for citty@https://registry.npmjs.org/citty/-/citty-0.1.6.tgz. Extracting by manifest.
+256 silly tarball no local data for call-me-maybe@https://registry.npmjs.org/call-me-maybe/-/call-me-maybe-1.0.2.tgz. Extracting by manifest.
+257 silly tarball no local data for c12@https://registry.npmjs.org/c12/-/c12-3.1.0.tgz. Extracting by manifest.
+258 silly tarball no local data for argparse@https://registry.npmjs.org/argparse/-/argparse-2.0.1.tgz. Extracting by manifest.
+259 silly tarball no local data for argon2@https://registry.npmjs.org/argon2/-/argon2-0.44.0.tgz. Extracting by manifest.
+260 silly tarball no local data for readdirp@https://registry.npmjs.org/readdirp/-/readdirp-4.1.2.tgz. Extracting by manifest.
+261 silly tarball no local data for commander@https://registry.npmjs.org/commander/-/commander-9.5.0.tgz. Extracting by manifest.
+262 silly tarball no local data for dotenv@https://registry.npmjs.org/dotenv/-/dotenv-16.6.1.tgz. Extracting by manifest.
+263 silly tarball no local data for chokidar@https://registry.npmjs.org/chokidar/-/chokidar-4.0.3.tgz. Extracting by manifest.
+264 http fetch GET https://registry.npmjs.org/@standard-schema/spec/-/spec-1.0.0.tgz attempt 1 failed with EAI_AGAIN
+265 http fetch GET https://registry.npmjs.org/@types/swagger-jsdoc/-/swagger-jsdoc-6.0.4.tgz attempt 1 failed with EAI_AGAIN
+266 http fetch GET https://registry.npmjs.org/@types/swagger-ui-express/-/swagger-ui-express-4.1.8.tgz attempt 1 failed with EAI_AGAIN
+267 http fetch GET https://registry.npmjs.org/@prisma/get-platform/-/get-platform-6.16.3.tgz attempt 1 failed with EAI_AGAIN
+268 http fetch GET https://registry.npmjs.org/@types/json-schema/-/json-schema-7.0.15.tgz attempt 1 failed with EAI_AGAIN
+269 http fetch GET https://registry.npmjs.org/@scarf/scarf/-/scarf-1.4.0.tgz attempt 1 failed with EAI_AGAIN
+270 http fetch GET https://registry.npmjs.org/@prisma/fetch-engine/-/fetch-engine-6.16.3.tgz attempt 1 failed with EAI_AGAIN
+271 http fetch GET https://registry.npmjs.org/@prisma/engines-version/-/engines-version-6.16.1-1.bb420e667c1820a8c05a38023385f6cc7ef8e83a.tgz attempt 1 failed with EAI_AGAIN
+272 http fetch GET https://registry.npmjs.org/@prisma/config/-/config-6.16.3.tgz attempt 1 failed with EAI_AGAIN
+273 http fetch GET https://registry.npmjs.org/@prisma/engines/-/engines-6.16.3.tgz attempt 1 failed with EAI_AGAIN
+274 http fetch GET https://registry.npmjs.org/@prisma/debug/-/debug-6.16.3.tgz attempt 1 failed with EAI_AGAIN
+275 http fetch GET https://registry.npmjs.org/@phc/format/-/format-1.0.0.tgz attempt 1 failed with EAI_AGAIN
+276 http fetch GET https://registry.npmjs.org/@jsdevtools/ono/-/ono-7.1.3.tgz attempt 1 failed with EAI_AGAIN
+277 http fetch GET https://registry.npmjs.org/@prisma/client/-/client-6.16.3.tgz attempt 1 failed with EAI_AGAIN
+278 http fetch GET https://registry.npmjs.org/@esbuild/linux-x64/-/linux-x64-0.25.10.tgz attempt 1 failed with EAI_AGAIN
+279 http fetch GET https://registry.npmjs.org/npm attempt 2 failed with EAI_AGAIN
+280 http fetch GET https://registry.npmjs.org/@standard-schema/spec/-/spec-1.0.0.tgz attempt 2 failed with EAI_AGAIN
+281 http fetch GET https://registry.npmjs.org/@types/swagger-jsdoc/-/swagger-jsdoc-6.0.4.tgz attempt 2 failed with EAI_AGAIN
+282 http fetch GET https://registry.npmjs.org/@types/swagger-ui-express/-/swagger-ui-express-4.1.8.tgz attempt 2 failed with EAI_AGAIN
+283 http fetch GET https://registry.npmjs.org/@prisma/get-platform/-/get-platform-6.16.3.tgz attempt 2 failed with EAI_AGAIN
+284 http fetch GET https://registry.npmjs.org/@types/json-schema/-/json-schema-7.0.15.tgz attempt 2 failed with EAI_AGAIN
+285 http fetch GET https://registry.npmjs.org/@scarf/scarf/-/scarf-1.4.0.tgz attempt 2 failed with EAI_AGAIN
+286 http fetch GET https://registry.npmjs.org/@prisma/fetch-engine/-/fetch-engine-6.16.3.tgz attempt 2 failed with EAI_AGAIN
+287 http fetch GET https://registry.npmjs.org/@prisma/engines-version/-/engines-version-6.16.1-1.bb420e667c1820a8c05a38023385f6cc7ef8e83a.tgz attempt 2 failed with EAI_AGAIN
+288 http fetch GET https://registry.npmjs.org/@prisma/config/-/config-6.16.3.tgz attempt 2 failed with EAI_AGAIN
+289 http fetch GET https://registry.npmjs.org/@prisma/engines/-/engines-6.16.3.tgz attempt 2 failed with EAI_AGAIN
+290 http fetch GET https://registry.npmjs.org/@prisma/debug/-/debug-6.16.3.tgz attempt 2 failed with EAI_AGAIN
+291 http fetch GET https://registry.npmjs.org/@phc/format/-/format-1.0.0.tgz attempt 2 failed with EAI_AGAIN
+292 http fetch GET https://registry.npmjs.org/@jsdevtools/ono/-/ono-7.1.3.tgz attempt 2 failed with EAI_AGAIN
+293 http fetch GET https://registry.npmjs.org/@prisma/client/-/client-6.16.3.tgz attempt 2 failed with EAI_AGAIN
+294 http fetch GET https://registry.npmjs.org/@esbuild/linux-x64/-/linux-x64-0.25.10.tgz attempt 2 failed with EAI_AGAIN
+295 http fetch GET https://registry.npmjs.org/npm attempt 3 failed with EAI_AGAIN
+296 http fetch GET https://registry.npmjs.org/@standard-schema/spec/-/spec-1.0.0.tgz attempt 3 failed with EAI_AGAIN
+297 http fetch GET https://registry.npmjs.org/@types/swagger-jsdoc/-/swagger-jsdoc-6.0.4.tgz attempt 3 failed with EAI_AGAIN
+298 http fetch GET https://registry.npmjs.org/@types/swagger-ui-express/-/swagger-ui-express-4.1.8.tgz attempt 3 failed with EAI_AGAIN
+299 http fetch GET https://registry.npmjs.org/@prisma/get-platform/-/get-platform-6.16.3.tgz attempt 3 failed with EAI_AGAIN
+300 http fetch GET https://registry.npmjs.org/@types/json-schema/-/json-schema-7.0.15.tgz attempt 3 failed with EAI_AGAIN
+301 http fetch GET https://registry.npmjs.org/@scarf/scarf/-/scarf-1.4.0.tgz attempt 3 failed with EAI_AGAIN
+302 http fetch GET https://registry.npmjs.org/@prisma/fetch-engine/-/fetch-engine-6.16.3.tgz attempt 3 failed with EAI_AGAIN
+303 http fetch GET https://registry.npmjs.org/@prisma/engines-version/-/engines-version-6.16.1-1.bb420e667c1820a8c05a38023385f6cc7ef8e83a.tgz attempt 3 failed with EAI_AGAIN
+304 http fetch GET https://registry.npmjs.org/@prisma/config/-/config-6.16.3.tgz attempt 3 failed with EAI_AGAIN
+305 http fetch GET https://registry.npmjs.org/@prisma/engines/-/engines-6.16.3.tgz attempt 3 failed with EAI_AGAIN
+306 http fetch GET https://registry.npmjs.org/@prisma/debug/-/debug-6.16.3.tgz attempt 3 failed with EAI_AGAIN
+307 http fetch GET https://registry.npmjs.org/@phc/format/-/format-1.0.0.tgz attempt 3 failed with EAI_AGAIN
+308 http fetch GET https://registry.npmjs.org/@jsdevtools/ono/-/ono-7.1.3.tgz attempt 3 failed with EAI_AGAIN
+309 http fetch GET https://registry.npmjs.org/@prisma/client/-/client-6.16.3.tgz attempt 3 failed with EAI_AGAIN
+310 http fetch GET https://registry.npmjs.org/@esbuild/linux-x64/-/linux-x64-0.25.10.tgz attempt 3 failed with EAI_AGAIN
+311 verbose reify failed optional dependency /home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/linux-x64
+312 silly reify mark deleted [
+312 silly reify   '/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/node_modules/@esbuild/linux-x64'
+312 silly reify ]
+313 verbose cwd /home/joaoandredemedeirosarnaud/repos/advanced-crm-api
+314 verbose os Linux 6.16.12-200.fc42.x86_64
+315 verbose node v20.17.0
+316 verbose npm  v10.8.2
+317 error Exit handler never called!
+318 error This is an error with npm itself. Please report this error at:
+319 error   <https://github.com/npm/cli/issues>
+320 verbose exit 0
+321 info ok
+322 error A complete log of this run can be found in: /home/joaoandredemedeirosarnaud/repos/advanced-crm-api/.npm-cache/_logs/2025-10-17T13_26_22_415Z-debug-0.log

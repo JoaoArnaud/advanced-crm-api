@@ -15,12 +15,12 @@ datasource db {
 }
 
 model User {
-  id        String @id @default(uuid())
-  name      String
-  email     String @unique
-  passwordHash  String
+  id           String @id @default(uuid())
+  name         String
+  email        String @unique
+  passwordHash String
 
-  role      Role   @default(USER)
+  role      Role    @default(USER)
   companyId String
   company   Company @relation(fields: [companyId], references: [id])
 
@@ -31,14 +31,14 @@ model User {
 }
 
 model Company {
-  id        String      @id @default(uuid())
-  name      String
-  email     String?
-  phone     String?
+  id    String  @id @default(uuid())
+  name  String
+  email String?
+  phone String?
 
-  users     User[]
-  leads     Leads[]
-  clients   Clients[]
+  users   User[]
+  leads   Leads[]
+  clients Clients[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -47,16 +47,16 @@ model Company {
 }
 
 model Leads {
-  id        Int      @id @default(autoincrement())
-  name      String
-  email     String?
-  phone     String?
-  status    LeadStatus @default(WARM)
-  cnpj      String?
-  cpf       String?
+  id     Int        @id @default(autoincrement())
+  name   String
+  email  String?
+  phone  String?
+  status LeadStatus @default(WARM)
+  cnpj   String?
+  cpf    String?
 
   companyId String
-  company   Company  @relation(fields: [companyId], references: [id])
+  company   Company   @relation(fields: [companyId], references: [id])
   clients   Clients[] @relation("ClientLead")
 
   createdAt DateTime @default(now())
@@ -66,19 +66,19 @@ model Leads {
 }
 
 model Clients {
-  id           Int      @id @default(autoincrement())
-  name         String
-  email        String?
-  phone        String?
-  cnpj         String?
-  
+  id    Int     @id @default(autoincrement())
+  name  String
+  email String?
+  phone String?
+  cnpj  String?
+
   companyId    String
   company      Company @relation(fields: [companyId], references: [id])
   leadOriginId Int?
   leadOrigin   Leads?  @relation("ClientLead", fields: [leadOriginId], references: [id])
 
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@map("clients")
 }
