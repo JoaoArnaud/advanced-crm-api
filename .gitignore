@@ -1,5 +1,10 @@
-node_modules
+node_modules/
+.npm-cache/
+.local/
+dist/
+build/
 # Keep environment variables out of version control
 .env
+*.log
 
 /src/generated/prisma
