@@ -179,7 +179,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/src/generated/prisma",
+      "value": "/home/joaoa/repos/advanced-crm-api/api/src/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -188,12 +188,12 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "rhel-openssl-3.0.x",
+        "value": "debian-openssl-3.0.x",
         "native": true
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/home/joaoandredemedeirosarnaud/repos/advanced-crm-api/prisma/schema.prisma",
+    "sourceFilePath": "/home/joaoa/repos/advanced-crm-api/api/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
