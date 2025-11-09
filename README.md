@@ -10,6 +10,8 @@
 - Automated OpenAPI 3.0 documentation served through Swagger UI.
 
 ## Tech Stack
+
+### Backend
 - Node.js 20+ and TypeScript 5
 - Express 5 HTTP server
 - Prisma ORM with PostgreSQL
@@ -17,7 +19,16 @@
 - Swagger JSDoc + Swagger UI Express
 - Argon2 for secure password hashing
 
+### Frontend
+- Next.js 15 (App Router) with React 19 and TypeScript
+- Material UI 7 for ready-made UI components
+- Axios for HTTP requests
+- Zod for client-side validation and form safety
+- Zustand/Context-agnostic architecture (React Context used here) for auth/data state
+
 ## Getting Started
+
+This repository hosts both the backend API (in the `api/` folder) and the Next.js frontend (in the `frontend/` folder). You can run them independently or in parallel.
 
 ### Prerequisites
 - Node.js 18 or newer (20 LTS recommended)
@@ -56,6 +67,57 @@
 
 Swagger UI becomes available at `http://localhost:3333/api/docs` (adjust the port if you changed it), and the raw OpenAPI spec is served at `/api/docs.json`.
 
+---
+
+## Frontend (Next.js)
+
+### Folder Structure
+```
+frontend/
+  src/
+    app/                 # Next.js routes (auth, home dashboard, settings)
+    components/          # Reusable dialogs, layout, UI helpers
+    contexts/            # Authentication and CRM data providers
+    hooks/               # Route protection and other shared hooks
+    services/            # Axios wrappers for users, leads, clients
+    types/               # Shared API/domain TypeScript definitions
+```
+
+### Environment Variables
+Create `frontend/.env.local` (or export the variable) to point the UI to the backend:
+```bash
+NEXT_PUBLIC_API_BASE_URL=http://localhost:3333/api
+```
+If you leave it unset, the app falls back to the local URL above.
+
+### Installation & Scripts
+```bash
+cd frontend
+npm install          # install dependencies
+npm run dev          # start Next.js with Turbopack (http://localhost:3000)
+npm run build        # production build
+npm run start        # serve the production build
+npm run lint         # lint TypeScript/React files
+```
+
+### Core Pages & Features
+- **Auth (/**): combined Register/Login tabs with Zod validation, error snackbars, and automatic redirect after success.
+- **Home (/home)**: protected route showing two Material UI tables:
+  - Leads table with status chips, CRUD dialogs, and delete confirmation.
+  - Clients table with lead-origin badges, CRUD dialogs, and delete confirmation.
+- **Settings (/settings)**: protected page that fetches the logged user, lets them edit name/company/role, and syncs the context state.
+
+### State & Data Flow
+- **AuthContext**: persists the authenticated user in `localStorage`, exposes register/login/logout/update helpers, and hydrates the session on page load.
+- **CRMDataContext**: fetches leads/clients for the user’s company and provides create/update/delete helpers with optimistic state updates and error surfacing.
+- **Route Protection**: `useProtectedRoute` pushes anonymous visitors back to `/` if they hit internal routes.
+- **Services**: axios-based modules under `src/services/` keep the API calls centralized and typed.
+
+### UI Notes
+- Material UI Theme is defined once in `LayoutProviders`, so colors/typography are consistent.
+- Dialog components (`LeadDialog`, `ClientDialog`, `ConfirmDialog`) encapsulate form logic + validation, keeping pages lean.
+- Feedback is provided through MUI `Snackbar + Alert` pairs for success/error states.
+
 ## Database & Prisma
 - Prisma models live in `prisma/schema.prisma` and target a PostgreSQL datasource.
 - Entities:
@@ -89,16 +151,25 @@ Detailed request/response shapes and status codes are documented in Swagger UI a
 
 ## Project Structure
 ```
-src/
-  controllers/     # Express route handlers coordinating validation and services
-  services/        # Business logic layers integrating with Prisma
-  routes/          # Resource routing mounted under /api
-  validators/      # Zod schemas for bodies and params
-  errors/          # Custom error hierarchy for predictable HTTP responses
-  docs/            # Swagger specification builder
-  db/              # Prisma client bootstrap
-prisma/
-  schema.prisma    # Database schema and generator configuration
+api/
+  src/
+    controllers/     # Express route handlers coordinating validation and services
+    services/        # Business logic layers integrating with Prisma
+    routes/          # Resource routing mounted under /api
+    validators/      # Zod schemas for bodies and params
+    errors/          # Custom error hierarchy for predictable HTTP responses
+    docs/            # Swagger specification builder
+    db/              # Prisma client bootstrap
+  prisma/
+    schema.prisma    # Database schema and generator configuration
+frontend/
+  src/
+    app/             # Next.js routes (App Router)
+    components/      # Shared UI components, dialogs, layout
+    contexts/        # React context providers (auth + CRM data)
+    hooks/           # Custom hooks (route protection, etc.)
+    services/        # Axios instances and resource-specific calls
+    types/           # Shared data contracts between frontend modules
 ```
 
 ## Available npm Scripts
