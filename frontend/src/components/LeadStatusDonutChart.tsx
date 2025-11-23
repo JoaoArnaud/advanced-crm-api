@@ -45,7 +45,6 @@ export function LeadStatusDonutChart({
       { key: "HOT" as const, label: "HOT", color: theme.palette.error.main },
       { key: "WARM" as const, label: "WARM", color: theme.palette.warning.main },
       { key: "COLD" as const, label: "COLD", color: theme.palette.info.main },
-      { key: "OTHER" as const, label: "Outros", color: theme.palette.grey[400] },
     ],
     [theme.palette],
   );
