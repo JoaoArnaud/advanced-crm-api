@@ -11,7 +11,7 @@ import {
   MenuItem,
   Stack,
 } from "@mui/material";
-import Grid from "@mui/material/Grid";
+import Grid2 from "@mui/material/Grid2";
 import type { SelectChangeEvent } from "@mui/material/Select";
 import { z } from "zod";
 import { Lead, LeadPayload, LeadStatus } from "@/types/api";
@@ -176,8 +176,8 @@ export function LeadDialog({
             <MenuItem value="WARM">WARM</MenuItem>
             <MenuItem value="COLD">COLD</MenuItem>
           </TextField>
-          <Grid container spacing={2}>
-            <Grid item xs={12} md={6}>
+          <Grid2 container spacing={2}>
+            <Grid2 item xs={12} md={6}>
               <TextField
                 label="CNPJ"
                 value={values.cnpj}
@@ -186,8 +186,8 @@ export function LeadDialog({
                 helperText={errors.cnpj}
                 fullWidth
               />
-            </Grid>
-            <Grid item xs={12} md={6}>
+            </Grid2>
+            <Grid2 item xs={12} md={6}>
               <TextField
                 label="CPF"
                 value={values.cpf}
@@ -196,8 +196,8 @@ export function LeadDialog({
                 helperText={errors.cpf}
                 fullWidth
               />
-            </Grid>
-          </Grid>
+            </Grid2>
+          </Grid2>
         </Stack>
       </DialogContent>
       <DialogActions>
