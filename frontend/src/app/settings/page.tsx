@@ -19,7 +19,6 @@ import { UpdateUserPayload } from "@/types/api";
 
 const profileSchema = z.object({
   name: z.string().trim().min(2, "Informe o nome."),
-  companyId: z.string().trim().uuid("Informe um UUID válido."),
 });
 
 type ProfileFormValues = z.infer<typeof profileSchema>;
@@ -30,11 +29,8 @@ export default function SettingsPage() {
 
   const [formValues, setFormValues] = useState<ProfileFormValues>({
     name: "",
-    companyId: "",
   });
-  const [errors, setErrors] = useState<
-    Partial<Record<keyof ProfileFormValues, string>>
-  >({});
+  const [errors, setErrors] = useState<Partial<Record<keyof ProfileFormValues, string>>>({});
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [snackbar, setSnackbar] = useState<{
@@ -53,7 +49,6 @@ export default function SettingsPage() {
         const { data } = await userService.getById(user.id);
         setFormValues({
           name: data.name,
-          companyId: data.companyId,
         });
       } catch (err) {
         console.error(err);
@@ -75,7 +70,6 @@ export default function SettingsPage() {
       const fieldErrors = validation.error.flatten().fieldErrors;
       setErrors({
         name: fieldErrors.name?.[0],
-        companyId: fieldErrors.companyId?.[0],
       });
       return;
     }
@@ -91,7 +85,6 @@ export default function SettingsPage() {
 
     const payload: UpdateUserPayload = {
       name: validation.data.name.trim(),
-      companyId: validation.data.companyId.trim(),
     };
 
     try {
@@ -153,10 +146,8 @@ export default function SettingsPage() {
               />
               <TextField
                 label="Company ID (UUID)"
-                value={formValues.companyId}
-                onChange={handleChange("companyId")}
-                error={Boolean(errors.companyId)}
-                helperText={errors.companyId}
+                value={user?.companyId ?? ""}
+                InputProps={{ readOnly: true }}
                 fullWidth
               />
               <Stack direction="row" justifyContent="flex-end">

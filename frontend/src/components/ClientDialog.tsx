@@ -9,16 +9,13 @@ import {
   Button,
   TextField,
   Stack,
-  MenuItem,
 } from "@mui/material";
-import type { SelectChangeEvent } from "@mui/material/Select";
 import { z } from "zod";
-import { Client, ClientPayload, Lead } from "@/types/api";
+import { Client, ClientPayload } from "@/types/api";
 
 interface ClientDialogProps {
   open: boolean;
   title: string;
-  leads: Lead[];
   initialData?: Client;
   submitting?: boolean;
   onClose: () => void;
@@ -35,13 +32,6 @@ const clientSchema = z.object({
     .or(z.literal("")),
   phone: z.string().trim().optional().or(z.literal("")),
   cnpj: z.string().trim().optional().or(z.literal("")),
-  leadOriginId: z
-    .string()
-    .trim()
-    .uuid("Informe um lead válido.")
-    .optional()
-    .or(z.literal(""))
-    .or(z.literal("null")),
 });
 
 type ClientFormValues = z.infer<typeof clientSchema>;
@@ -49,7 +39,6 @@ type ClientFormValues = z.infer<typeof clientSchema>;
 export function ClientDialog({
   open,
   title,
-  leads,
   initialData,
   submitting,
   onClose,
@@ -60,14 +49,12 @@ export function ClientDialog({
     email: "",
     phone: "",
     cnpj: "",
-    leadOriginId: "",
   });
   const [errors, setErrors] = useState<Record<keyof ClientFormValues, string | null>>({
     name: null,
     email: null,
     phone: null,
     cnpj: null,
-    leadOriginId: null,
   });
 
   useEffect(() => {
@@ -77,7 +64,6 @@ export function ClientDialog({
         email: initialData.email ?? "",
         phone: initialData.phone ?? "",
         cnpj: initialData.cnpj ?? "",
-        leadOriginId: initialData.leadOriginId ?? "",
       });
     } else {
       setValues({
@@ -85,7 +71,6 @@ export function ClientDialog({
         email: "",
         phone: "",
         cnpj: "",
-        leadOriginId: "",
       });
     }
     setErrors({
@@ -93,7 +78,6 @@ export function ClientDialog({
       email: null,
       phone: null,
       cnpj: null,
-      leadOriginId: null,
     });
   }, [initialData, open]);
 
@@ -107,7 +91,6 @@ export function ClientDialog({
         email: fieldErrors.email?.[0] ?? null,
         phone: fieldErrors.phone?.[0] ?? null,
         cnpj: fieldErrors.cnpj?.[0] ?? null,
-        leadOriginId: fieldErrors.leadOriginId?.[0] ?? null,
       }));
       return;
     }
@@ -117,8 +100,6 @@ export function ClientDialog({
       email: values.email?.trim() || undefined,
       phone: values.phone?.trim() || undefined,
       cnpj: values.cnpj?.trim() || undefined,
-      leadOriginId:
-        values.leadOriginId === "" ? undefined : values.leadOriginId === "null" ? null : values.leadOriginId,
     };
 
     await onSubmit(payload);
@@ -126,11 +107,7 @@ export function ClientDialog({
 
   const handleChange =
     (field: keyof ClientFormValues) =>
-    (
-      event:
-        | ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-        | SelectChangeEvent<string>,
-    ) => {
+    (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       const value = event.target.value as string;
       setValues((prev) => ({ ...prev, [field]: value }));
       setErrors((prev) => ({ ...prev, [field]: null }));
@@ -171,22 +148,6 @@ export function ClientDialog({
             error={Boolean(errors.cnpj)}
             helperText={errors.cnpj}
           />
-          <TextField
-            select
-            label="Lead de origem"
-            value={values.leadOriginId ?? ""}
-            onChange={handleChange("leadOriginId")}
-            error={Boolean(errors.leadOriginId)}
-            helperText={errors.leadOriginId ?? "Selecione um lead ou deixe em branco."}
-          >
-            <MenuItem value="">Nenhum</MenuItem>
-            <MenuItem value="null">Remover vínculo</MenuItem>
-            {leads.map((lead) => (
-              <MenuItem key={lead.id} value={lead.id}>
-                {lead.name} ({lead.status})
-              </MenuItem>
-            ))}
-          </TextField>
         </Stack>
       </DialogContent>
       <DialogActions>

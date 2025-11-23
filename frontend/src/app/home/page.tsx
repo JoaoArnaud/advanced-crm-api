@@ -445,7 +445,6 @@ export default function HomePage() {
         open={clientDialog.open}
         title={clientDialog.record ? "Editar Cliente" : "Novo Cliente"}
         initialData={clientDialog.record ?? undefined}
-        leads={leads}
         submitting={submitting}
         onClose={() => setClientDialog({ open: false, record: null })}
         onSubmit={handleClientSubmit}
