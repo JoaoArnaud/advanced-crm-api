@@ -102,10 +102,11 @@ npm run lint         # lint TypeScript/React files
 
 ### Core Pages & Features
 - **Auth (/**): combined Register/Login tabs with Zod validation, error snackbars, and automatic redirect after success.
-- **Home (/home)**: protected route showing two Material UI tables:
-  - Leads table with status chips, CRUD dialogs, and delete confirmation.
-  - Clients table with lead-origin badges, CRUD dialogs, and delete confirmation.
-- **Settings (/settings)**: protected page that fetches the logged user, lets them edit name/company/role, and syncs the context state.
+- **Home (/home)**: protected route with dashboard insights and two tables:
+  - `LeadStatusDonutChart` and `LeadClientMonthlyChart` show status distribution and the monthly evolution of leads vs. clients.
+  - Leads table with status chips, CRUD dialogs, hidden IDs, and a “Convert” button that creates the client (automatically linking the lead origin) and removes the lead.
+  - Clients table keeps CRUD operations, shows the lead origin badge when available, and only allows origins created via conversion.
+- **Settings (/settings)**: protected page that fetches the logged user, lets them update only their name, and renders e-mail/company ID as read-only fields.
 
 ### State & Data Flow
 - **AuthContext**: persists the authenticated user in `localStorage`, exposes register/login/logout/update helpers, and hydrates the session on page load.
@@ -116,6 +117,7 @@ npm run lint         # lint TypeScript/React files
 ### UI Notes
 - Material UI Theme is defined once in `LayoutProviders`, so colors/typography are consistent.
 - Dialog components (`LeadDialog`, `ClientDialog`, `ConfirmDialog`) encapsulate form logic + validation, keeping pages lean.
+- `ClientDialog` no longer exposes the lead-origin selector; origins are created exclusively via the lead-to-client conversion flow.
 - Feedback is provided through MUI `Snackbar + Alert` pairs for success/error states.
 
 ## Database & Prisma
