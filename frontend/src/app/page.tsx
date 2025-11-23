@@ -229,7 +229,7 @@ export default function AuthPage() {
     >
       <Paper sx={{ width: "100%", maxWidth: 520, p: 4 }}>
         <Typography variant="h4" textAlign="center" fontWeight={600}>
-          Advanced CRM
+          ClientDesk
         </Typography>
         <Typography variant="body1" textAlign="center" color="text.secondary" sx={{ mt: 1 }}>
           Acesse sua conta ou crie um novo acesso para começar.

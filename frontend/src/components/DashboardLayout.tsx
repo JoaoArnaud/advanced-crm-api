@@ -49,7 +49,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
             <Menu size={20} />
           </IconButton>
           <Typography variant="h6" sx={{ flexGrow: 1 }}>
-            Advanced CRM
+            ClientDesk
           </Typography>
           <Button
             color="inherit"

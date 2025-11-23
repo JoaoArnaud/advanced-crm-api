@@ -4,7 +4,7 @@ const swaggerOptions: swaggerJsdoc.Options = {
     definition: {
         openapi: "3.0.1",
         info: {
-            title: "Advanced CRM API",
+            title: "ClientDesk",
             description:
                 "Documentação da API de CRM. Todos os recursos são multi-tenant: os dados ficam isolados por empresa.",
             version: "1.0.0",
