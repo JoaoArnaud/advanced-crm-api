@@ -1,5 +1,5 @@
 import prisma from "../db/prisma";
-import { LeadStatus, Prisma } from "../generated/prisma";
+import { LeadStatus, Prisma } from "@prisma/client";
 import { NotFoundError, ValidationError } from "../errors/applicationError";
 
 type CreateLeadParams = {

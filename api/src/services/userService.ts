@@ -1,5 +1,5 @@
 import prisma from "../db/prisma";
-import { Prisma, Role } from "../generated/prisma";
+import { Prisma, Role } from "@prisma/client";
 import { hashPassword, verifyPassword } from "../security/passwordHasher";
 import {
     AuthenticationError,

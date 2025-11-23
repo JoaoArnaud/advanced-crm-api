@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { LeadStatus } from "../generated/prisma";
+import { LeadStatus } from "@prisma/client";
 
 const nonEmptyString = z.string().trim().min(1, "Campo obrigatório");
 const optionalString = z.string().trim().min(1, "Campo obrigatório").optional().nullable();

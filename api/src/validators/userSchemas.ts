@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { Role } from "../generated/prisma";
+import { Role } from "@prisma/client";
 
 const nonEmptyString = z.string().trim().min(1, "Campo obrigatório");
 

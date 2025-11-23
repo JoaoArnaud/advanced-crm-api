@@ -1,5 +1,5 @@
 import prisma from "../db/prisma";
-import { Prisma } from "../generated/prisma";
+import { Prisma } from "@prisma/client";
 import { NotFoundError, ValidationError } from "../errors/applicationError";
 
 type CreateCompanyParams = {
