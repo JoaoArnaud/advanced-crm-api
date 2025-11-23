@@ -11,7 +11,7 @@ import {
   MenuItem,
   Stack,
 } from "@mui/material";
-import Grid2 from "@mui/material/Grid2";
+import Grid2 from "@mui/material/Unstable_Grid2";
 import type { SelectChangeEvent } from "@mui/material/Select";
 import { z } from "zod";
 import { Lead, LeadPayload, LeadStatus } from "@/types/api";
