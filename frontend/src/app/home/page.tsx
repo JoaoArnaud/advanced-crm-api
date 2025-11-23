@@ -19,7 +19,7 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-import { Plus, Edit3, Trash2 } from "lucide-react";
+import { Plus, Edit3, Trash2, UserCheck } from "lucide-react";
 import { DashboardLayout } from "@/components/DashboardLayout";
 import { useProtectedRoute } from "@/hooks/useProtectedRoute";
 import { useCRMData } from "@/contexts/CRMDataContext";
@@ -48,6 +48,7 @@ export default function HomePage() {
     createClient,
     updateClient,
     deleteClient,
+    convertLeadToClient,
   } = useCRMData();
 
   const [leadDialog, setLeadDialog] = useState<{
@@ -60,6 +61,7 @@ export default function HomePage() {
   }>({ open: false, record: null });
   const [deleteTarget, setDeleteTarget] = useState<DeleteTarget>(null);
   const [submitting, setSubmitting] = useState(false);
+  const [convertingLeadId, setConvertingLeadId] = useState<string | null>(null);
   const [snackbar, setSnackbar] = useState<{
     open: boolean;
     message: string;
@@ -158,6 +160,35 @@ export default function HomePage() {
     }
   };
 
+  const handleConvertLead = async (lead: Lead) => {
+    try {
+      setConvertingLeadId(lead.id);
+      const result = await convertLeadToClient(lead);
+      if (!result) {
+        setSnackbar({
+          open: true,
+          message: "Não foi possível converter o lead.",
+          severity: "error",
+        });
+        return;
+      }
+      setSnackbar({
+        open: true,
+        message: "Lead convertido em cliente com sucesso!",
+        severity: "success",
+      });
+    } catch (err) {
+      console.error(err);
+      setSnackbar({
+        open: true,
+        message: "Erro ao converter lead. Tente novamente.",
+        severity: "error",
+      });
+    } finally {
+      setConvertingLeadId(null);
+    }
+  };
+
   const handleDelete = async () => {
     if (!deleteTarget) return;
     try {
@@ -225,7 +256,6 @@ export default function HomePage() {
               <Table size="small">
                 <TableHead>
                   <TableRow>
-                    <TableCell>ID</TableCell>
                     <TableCell>Nome</TableCell>
                     <TableCell>E-mail</TableCell>
                     <TableCell>Telefone</TableCell>
@@ -237,45 +267,65 @@ export default function HomePage() {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {sortedLeads.map((lead) => (
-                    <TableRow key={lead.id} hover>
-                      <TableCell>{lead.id}</TableCell>
-                      <TableCell>{lead.name}</TableCell>
-                      <TableCell>{lead.email ?? "-"}</TableCell>
-                      <TableCell>{lead.phone ?? "-"}</TableCell>
-                      <TableCell>
-                        <Chip
-                          label={lead.status}
-                          color={
-                            lead.status === "HOT"
-                              ? "error"
-                              : lead.status === "WARM"
-                              ? "warning"
-                              : "default"
-                          }
-                          size="small"
-                        />
-                      </TableCell>
-                      <TableCell>{lead.cnpj ?? "-"}</TableCell>
-                      <TableCell>{lead.cpf ?? "-"}</TableCell>
-                      <TableCell>{formatDate(lead.createdAt)}</TableCell>
-                      <TableCell align="right">
-                        <IconButton
-                          size="small"
-                          onClick={() => setLeadDialog({ open: true, record: lead })}
-                        >
-                          <Edit3 size={16} />
-                        </IconButton>
-                        <IconButton
-                          size="small"
-                          color="error"
-                          onClick={() => setDeleteTarget({ type: "lead", record: lead })}
-                        >
-                          <Trash2 size={16} />
-                        </IconButton>
-                      </TableCell>
-                    </TableRow>
-                  ))}
+                  {sortedLeads.map((lead) => {
+                    const isConverting = convertingLeadId === lead.id;
+                    const anotherConversionInProgress =
+                      Boolean(convertingLeadId) && convertingLeadId !== lead.id;
+                    return (
+                      <TableRow key={lead.id} hover>
+                        <TableCell>{lead.name}</TableCell>
+                        <TableCell>{lead.email ?? "-"}</TableCell>
+                        <TableCell>{lead.phone ?? "-"}</TableCell>
+                        <TableCell>
+                          <Chip
+                            label={lead.status}
+                            color={
+                              lead.status === "HOT"
+                                ? "error"
+                                : lead.status === "WARM"
+                                ? "warning"
+                                : "default"
+                            }
+                            size="small"
+                          />
+                        </TableCell>
+                        <TableCell>{lead.cnpj ?? "-"}</TableCell>
+                        <TableCell>{lead.cpf ?? "-"}</TableCell>
+                        <TableCell>{formatDate(lead.createdAt)}</TableCell>
+                        <TableCell align="right">
+                          <Button
+                            size="small"
+                            variant="outlined"
+                            startIcon={
+                              isConverting ? (
+                                <CircularProgress size={16} color="inherit" />
+                              ) : (
+                                <UserCheck size={16} />
+                              )
+                            }
+                            sx={{ mr: 1 }}
+                            disabled={isConverting || anotherConversionInProgress}
+                            onClick={() => handleConvertLead(lead)}
+                          >
+                            Converter
+                          </Button>
+                          <IconButton
+                            size="small"
+                            onClick={() => setLeadDialog({ open: true, record: lead })}
+                          >
+                            <Edit3 size={16} />
+                          </IconButton>
+                          <IconButton
+                            size="small"
+                            color="error"
+                            onClick={() => setDeleteTarget({ type: "lead", record: lead })}
+                          >
+                            <Trash2 size={16} />
+                          </IconButton>
+                        </TableCell>
+                      </TableRow>
+                    );
+                  })}
                 </TableBody>
               </Table>
               {sortedLeads.length === 0 && !loading && renderEmptyState("Nenhum lead encontrado para esta empresa.")}
@@ -308,7 +358,6 @@ export default function HomePage() {
               <Table size="small">
                 <TableHead>
                   <TableRow>
-                    <TableCell>ID</TableCell>
                     <TableCell>Nome</TableCell>
                     <TableCell>E-mail</TableCell>
                     <TableCell>Telefone</TableCell>
@@ -320,7 +369,6 @@ export default function HomePage() {
                 <TableBody>
                   {sortedClients.map((client) => (
                     <TableRow key={client.id} hover>
-                      <TableCell>{client.id}</TableCell>
                       <TableCell>{client.name}</TableCell>
                       <TableCell>{client.email ?? "-"}</TableCell>
                       <TableCell>{client.phone ?? "-"}</TableCell>

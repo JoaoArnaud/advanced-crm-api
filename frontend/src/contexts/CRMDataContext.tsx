@@ -35,6 +35,7 @@ interface CRMDataContextValue {
     payload: ClientUpdatePayload,
   ) => Promise<Client | null>;
   deleteClient: (clientId: string) => Promise<void>;
+  convertLeadToClient: (lead: Lead) => Promise<Client | null>;
   clearError: () => void;
 }
 
@@ -200,6 +201,32 @@ export function CRMDataProvider({ children }: { children: React.ReactNode }) {
     [companyId, handleError],
   );
 
+  const convertLeadToClient = useCallback(
+    async (lead: Lead) => {
+      if (!companyId) {
+        handleError("Empresa não encontrada para o usuário atual.");
+        return null;
+      }
+      try {
+        const { data } = await clientService.create(companyId, {
+          name: lead.name,
+          email: lead.email ?? null,
+          phone: lead.phone ?? null,
+          cnpj: lead.cnpj ?? null,
+          leadOriginId: lead.id,
+        });
+        setClients((prev) => [...prev, data]);
+        setLeads((prev) => prev.filter((existing) => existing.id !== lead.id));
+        return data;
+      } catch (err) {
+        console.error(err);
+        handleError("Erro ao converter lead em cliente.");
+        throw err;
+      }
+    },
+    [companyId, handleError],
+  );
+
   const clearError = useCallback(() => setError(null), []);
 
   const value = useMemo(
@@ -215,6 +242,7 @@ export function CRMDataProvider({ children }: { children: React.ReactNode }) {
       createClient,
       updateClient,
       deleteClient,
+      convertLeadToClient,
       clearError,
     }),
     [
@@ -229,6 +257,7 @@ export function CRMDataProvider({ children }: { children: React.ReactNode }) {
       loading,
       updateClient,
       updateLead,
+      convertLeadToClient,
       clearError,
     ],
   );
