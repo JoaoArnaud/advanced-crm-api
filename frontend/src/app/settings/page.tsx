@@ -4,14 +4,12 @@ import { useEffect, useState, type ChangeEvent } from "react";
 import {
   Alert,
   Button,
-  MenuItem,
   Paper,
   Snackbar,
   Stack,
   TextField,
   Typography,
 } from "@mui/material";
-import type { SelectChangeEvent } from "@mui/material/Select";
 import { z } from "zod";
 import { DashboardLayout } from "@/components/DashboardLayout";
 import { useProtectedRoute } from "@/hooks/useProtectedRoute";
@@ -22,7 +20,6 @@ import { UpdateUserPayload } from "@/types/api";
 const profileSchema = z.object({
   name: z.string().trim().min(2, "Informe o nome."),
   companyId: z.string().trim().uuid("Informe um UUID válido."),
-  role: z.enum(["ADMIN", "USER"]).optional(),
 });
 
 type ProfileFormValues = z.infer<typeof profileSchema>;
@@ -34,7 +31,6 @@ export default function SettingsPage() {
   const [formValues, setFormValues] = useState<ProfileFormValues>({
     name: "",
     companyId: "",
-    role: "USER",
   });
   const [errors, setErrors] = useState<
     Partial<Record<keyof ProfileFormValues, string>>
@@ -58,7 +54,6 @@ export default function SettingsPage() {
         setFormValues({
           name: data.name,
           companyId: data.companyId,
-          role: data.role,
         });
       } catch (err) {
         console.error(err);
@@ -81,7 +76,6 @@ export default function SettingsPage() {
       setErrors({
         name: fieldErrors.name?.[0],
         companyId: fieldErrors.companyId?.[0],
-        role: fieldErrors.role?.[0],
       });
       return;
     }
@@ -98,7 +92,6 @@ export default function SettingsPage() {
     const payload: UpdateUserPayload = {
       name: validation.data.name.trim(),
       companyId: validation.data.companyId.trim(),
-      role: validation.data.role,
     };
 
     try {
@@ -124,11 +117,7 @@ export default function SettingsPage() {
 
   const handleChange =
     (field: keyof ProfileFormValues) =>
-    (
-      event:
-        | ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-        | SelectChangeEvent<string>,
-    ) => {
+    (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       setFormValues((prev) => ({ ...prev, [field]: event.target.value }));
       setErrors((prev) => ({ ...prev, [field]: undefined }));
     };
@@ -170,17 +159,6 @@ export default function SettingsPage() {
                 helperText={errors.companyId}
                 fullWidth
               />
-              <TextField
-                select
-                label="Role"
-                value={formValues.role ?? ""}
-                onChange={handleChange("role")}
-                error={Boolean(errors.role)}
-                helperText={errors.role ?? "Selecione o nível de acesso."}
-              >
-                <MenuItem value="USER">Usuário</MenuItem>
-                <MenuItem value="ADMIN">Administrador</MenuItem>
-              </TextField>
               <Stack direction="row" justifyContent="flex-end">
                 <Button variant="contained" onClick={handleSubmit} disabled={saving}>
                   Salvar alterações
