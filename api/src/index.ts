@@ -11,11 +11,15 @@ import cors from "cors";
 dotenv.config();
 
 const app: Express = express();
-const port = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
 // CORS
+
+// Configuração CORS - permite requisições do frontend em produção
+const CORS_ORIGIN = process.env.CORS_ORIGIN || "http://localhost:3000";
+
 app.use(cors({
-  origin: "http://localhost:3000", // libera o front
+  origin: CORS_ORIGIN,
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
@@ -34,6 +38,7 @@ app.get("/api/docs.json", (_req, res) => {
   res.json(swaggerSpec);
 });
 
-app.listen(port, () => {
-  console.log(`The API is running on the port: ${port}`);
+app.listen(PORT, () => {
+  console.log(`🚀 Server is running on http://localhost:${PORT}`);
+  console.log(`📡 CORS enabled for: ${CORS_ORIGIN}`);
 });
