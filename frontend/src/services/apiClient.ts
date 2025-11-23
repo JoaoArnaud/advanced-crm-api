@@ -1,8 +1,17 @@
 import axios from "axios";
 
+type ImportMetaEnv = {
+  readonly VITE_API_URL?: string;
+};
+
+type ImportMetaLike = {
+  readonly env?: ImportMetaEnv;
+};
+
 const resolveApiUrl = () => {
-  const importMeta = typeof import.meta !== "undefined" ? (import.meta as Record<string, any>) : null;
-  const viteUrl = importMeta?.env?.VITE_API_URL as string | undefined;
+  const importMeta: ImportMetaLike | null =
+    typeof import.meta !== "undefined" ? (import.meta as ImportMetaLike) : null;
+  const viteUrl = importMeta?.env?.VITE_API_URL;
   const nextUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const fallback = "http://localhost:3333";
   const base = viteUrl ?? nextUrl ?? fallback;
