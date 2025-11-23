@@ -135,59 +135,61 @@ export default function SettingsPage() {
 
   return (
     <DashboardLayout>
-      <Paper sx={{ maxWidth: 640, p: 4 }}>
-        <Typography variant="h5" fontWeight={600}>
-          Configurações
-        </Typography>
-        <Typography color="text.secondary" sx={{ mb: 3 }}>
-          Atualize os dados atrelados à sua conta.
-        </Typography>
+      <Stack alignItems="center" sx={{ width: "100%", py: { xs: 2, md: 4 } }}>
+        <Paper sx={{ width: "100%", maxWidth: 640, p: 4 }}>
+          <Typography variant="h5" fontWeight={600}>
+            Configurações
+          </Typography>
+          <Typography color="text.secondary" sx={{ mb: 3 }}>
+            Atualize os dados atrelados à sua conta.
+          </Typography>
 
-        {loading ? (
-          <Typography>Carregando informações...</Typography>
-        ) : (
-          <Stack spacing={2}>
-            <TextField
-              label="Nome"
-              value={formValues.name}
-              onChange={handleChange("name")}
-              error={Boolean(errors.name)}
-              helperText={errors.name}
-              fullWidth
-            />
-            <TextField
-              label="E-mail"
-              value={user?.email ?? ""}
-              InputProps={{ readOnly: true }}
-              fullWidth
-            />
-            <TextField
-              label="Company ID (UUID)"
-              value={formValues.companyId}
-              onChange={handleChange("companyId")}
-              error={Boolean(errors.companyId)}
-              helperText={errors.companyId}
-              fullWidth
-            />
-            <TextField
-              select
-              label="Role"
-              value={formValues.role ?? ""}
-              onChange={handleChange("role")}
-              error={Boolean(errors.role)}
-              helperText={errors.role ?? "Selecione o nível de acesso."}
-            >
-              <MenuItem value="USER">Usuário</MenuItem>
-              <MenuItem value="ADMIN">Administrador</MenuItem>
-            </TextField>
-            <Stack direction="row" justifyContent="flex-end">
-              <Button variant="contained" onClick={handleSubmit} disabled={saving}>
-                Salvar alterações
-              </Button>
+          {loading ? (
+            <Typography>Carregando informações...</Typography>
+          ) : (
+            <Stack spacing={2}>
+              <TextField
+                label="Nome"
+                value={formValues.name}
+                onChange={handleChange("name")}
+                error={Boolean(errors.name)}
+                helperText={errors.name}
+                fullWidth
+              />
+              <TextField
+                label="E-mail"
+                value={user?.email ?? ""}
+                InputProps={{ readOnly: true }}
+                fullWidth
+              />
+              <TextField
+                label="Company ID (UUID)"
+                value={formValues.companyId}
+                onChange={handleChange("companyId")}
+                error={Boolean(errors.companyId)}
+                helperText={errors.companyId}
+                fullWidth
+              />
+              <TextField
+                select
+                label="Role"
+                value={formValues.role ?? ""}
+                onChange={handleChange("role")}
+                error={Boolean(errors.role)}
+                helperText={errors.role ?? "Selecione o nível de acesso."}
+              >
+                <MenuItem value="USER">Usuário</MenuItem>
+                <MenuItem value="ADMIN">Administrador</MenuItem>
+              </TextField>
+              <Stack direction="row" justifyContent="flex-end">
+                <Button variant="contained" onClick={handleSubmit} disabled={saving}>
+                  Salvar alterações
+                </Button>
+              </Stack>
             </Stack>
-          </Stack>
-        )}
-      </Paper>
+          )}
+        </Paper>
+      </Stack>
       <Snackbar
         open={snackbar.open}
         autoHideDuration={4000}

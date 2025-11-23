@@ -27,6 +27,8 @@ import { Lead, Client, LeadPayload, ClientPayload } from "@/types/api";
 import { LeadDialog } from "@/components/LeadDialog";
 import { ClientDialog } from "@/components/ClientDialog";
 import { ConfirmDialog } from "@/components/ConfirmDialog";
+import { LeadStatusDonutChart } from "@/components/LeadStatusDonutChart";
+import { LeadClientMonthlyChart } from "@/components/LeadClientMonthlyChart";
 
 type DeleteTarget =
   | { type: "lead"; record: Lead }
@@ -231,6 +233,26 @@ export default function HomePage() {
   return (
     <DashboardLayout>
       <Stack spacing={4}>
+        <Stack spacing={3}>
+          <Stack
+            direction={{ xs: "column", lg: "row" }}
+            spacing={3}
+            alignItems="stretch"
+          >
+            <Box sx={{ flex: 1 }}>
+              <LeadClientMonthlyChart leads={leads} clients={clients} />
+            </Box>
+            <Box
+              sx={{
+                flex: { lg: "0 0 420px", xs: 1 },
+                display: "flex",
+                justifyContent: { xs: "stretch", lg: "flex-end" },
+              }}
+            >
+              <LeadStatusDonutChart leads={leads} maxWidth={420} />
+            </Box>
+          </Stack>
+        </Stack>
         <Paper sx={{ p: 3 }}>
           <Stack direction="row" justifyContent="space-between" alignItems="center" flexWrap="wrap" gap={2}>
             <Box>
