@@ -11,7 +11,6 @@ import {
   MenuItem,
   Stack,
 } from "@mui/material";
-import Grid2 from "@mui/material/Unstable_Grid2";
 import type { SelectChangeEvent } from "@mui/material/Select";
 import { z } from "zod";
 import { Lead, LeadPayload, LeadStatus } from "@/types/api";
@@ -176,28 +175,28 @@ export function LeadDialog({
             <MenuItem value="WARM">WARM</MenuItem>
             <MenuItem value="COLD">COLD</MenuItem>
           </TextField>
-          <Grid2 container spacing={2}>
-            <Grid2 item xs={12} md={6}>
-              <TextField
-                label="CNPJ"
-                value={values.cnpj}
-                onChange={handleChange("cnpj")}
-                error={Boolean(errors.cnpj)}
-                helperText={errors.cnpj}
-                fullWidth
-              />
-            </Grid2>
-            <Grid2 item xs={12} md={6}>
-              <TextField
-                label="CPF"
-                value={values.cpf}
-                onChange={handleChange("cpf")}
-                error={Boolean(errors.cpf)}
-                helperText={errors.cpf}
-                fullWidth
-              />
-            </Grid2>
-          </Grid2>
+          <Stack
+            direction={{ xs: "column", md: "row" }}
+            spacing={2}
+            sx={{ width: "100%" }}
+          >
+            <TextField
+              label="CNPJ"
+              value={values.cnpj}
+              onChange={handleChange("cnpj")}
+              error={Boolean(errors.cnpj)}
+              helperText={errors.cnpj}
+              fullWidth
+            />
+            <TextField
+              label="CPF"
+              value={values.cpf}
+              onChange={handleChange("cpf")}
+              error={Boolean(errors.cpf)}
+              helperText={errors.cpf}
+              fullWidth
+            />
+          </Stack>
         </Stack>
       </DialogContent>
       <DialogActions>
