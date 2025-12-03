@@ -10,7 +10,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import { Paper, Stack, Typography, Box, useTheme } from "@mui/material";
+import { Box, Card, CardContent, Skeleton, Stack, Typography, useTheme } from "@mui/material";
 import { Lead, Client } from "@/types/api";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
@@ -24,6 +24,7 @@ interface LeadClientMonthlyChartProps {
   leads: Lead[];
   clients: Client[];
   title?: string;
+  loading?: boolean;
 }
 
 type MonthlyBucket = {
@@ -37,6 +38,7 @@ export function LeadClientMonthlyChart({
   leads,
   clients,
   title = "Leads x Clientes por mês",
+  loading,
 }: LeadClientMonthlyChartProps) {
   const theme = useTheme();
 
@@ -142,27 +144,31 @@ export function LeadClientMonthlyChart({
   );
 
   return (
-    <Paper sx={{ p: 3 }}>
-      <Stack spacing={3}>
-        <Typography variant="h6" fontWeight={600}>
-          {title}
-        </Typography>
-        <Box sx={{ height: 320 }}>
-          {monthlyData.labels.length > 0 ? (
-            <BarChart data={chartData} options={chartOptions} />
-          ) : (
-            <Stack
-              alignItems="center"
-              justifyContent="center"
-              sx={{ height: 1, color: "text.secondary" }}
-            >
-              <Typography variant="body2">
-                Não há dados suficientes para exibir o gráfico.
-              </Typography>
-            </Stack>
-          )}
-        </Box>
-      </Stack>
-    </Paper>
+    <Card>
+      <CardContent>
+        <Stack spacing={3}>
+          <Typography variant="h6" fontWeight={700}>
+            {title}
+          </Typography>
+          <Box sx={{ height: 320 }}>
+            {loading ? (
+              <Skeleton variant="rounded" height="100%" />
+            ) : monthlyData.labels.length > 0 ? (
+              <BarChart data={chartData} options={chartOptions} />
+            ) : (
+              <Stack
+                alignItems="center"
+                justifyContent="center"
+                sx={{ height: 1, color: "text.secondary" }}
+              >
+                <Typography variant="body2">
+                  Não há dados suficientes para exibir o gráfico.
+                </Typography>
+              </Stack>
+            )}
+          </Box>
+        </Stack>
+      </CardContent>
+    </Card>
   );
 }

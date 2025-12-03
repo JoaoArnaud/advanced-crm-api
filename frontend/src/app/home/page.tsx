@@ -3,12 +3,15 @@
 import { useEffect, useMemo, useState } from "react";
 import {
   Alert,
+  Avatar,
   Box,
   Button,
   Chip,
   CircularProgress,
   IconButton,
+  LinearProgress,
   Paper,
+  Skeleton,
   Snackbar,
   Stack,
   Table,
@@ -19,7 +22,16 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-import { Plus, Edit3, Trash2, UserCheck } from "lucide-react";
+import {
+  BarChart3,
+  Edit3,
+  Plus,
+  Trash2,
+  TrendingUp,
+  UserCheck,
+  UserPlus,
+  Users,
+} from "lucide-react";
 import { DashboardLayout } from "@/components/DashboardLayout";
 import { useProtectedRoute } from "@/hooks/useProtectedRoute";
 import { useCRMData } from "@/contexts/CRMDataContext";
@@ -29,11 +41,70 @@ import { ClientDialog } from "@/components/ClientDialog";
 import { ConfirmDialog } from "@/components/ConfirmDialog";
 import { LeadStatusDonutChart } from "@/components/LeadStatusDonutChart";
 import { LeadClientMonthlyChart } from "@/components/LeadClientMonthlyChart";
+import { MetricCard, SectionCard } from "@/components/dashboard/Cards";
 
 type DeleteTarget =
   | { type: "lead"; record: Lead }
   | { type: "client"; record: Client }
   | null;
+
+function formatDate(value?: string) {
+  if (!value) return "-";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "-";
+  return date.toLocaleString("pt-BR");
+}
+
+const rtf = new Intl.RelativeTimeFormat("pt-BR", { numeric: "auto" });
+
+function formatRelativeTime(value?: string) {
+  if (!value) return "Data indisponível";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "Data indisponível";
+  const diff = Date.now() - date.getTime();
+  const minutes = Math.round(diff / 60000);
+  if (Math.abs(minutes) < 60) {
+    return rtf.format(-minutes, "minute");
+  }
+  const hours = Math.round(minutes / 60);
+  if (Math.abs(hours) < 24) {
+    return rtf.format(-hours, "hour");
+  }
+  const days = Math.round(hours / 24);
+  return rtf.format(-days, "day");
+}
+
+function percentageChange(current: number, previous: number) {
+  if (previous === 0) {
+    return current > 0 ? "+100% vs período anterior" : "Sem variação recente";
+  }
+  const diff = ((current - previous) / previous) * 100;
+  const sign = diff >= 0 ? "+" : "";
+  return `${sign}${diff.toFixed(1)}% vs período anterior`;
+}
+
+function TableSkeleton({ columns }: { columns: number }) {
+  return (
+    <TableBody>
+      {Array.from({ length: 4 }).map((_, rowIndex) => (
+        <TableRow key={rowIndex}>
+          {Array.from({ length: columns }).map((__, colIndex) => (
+            <TableCell key={colIndex}>
+              <Skeleton width={colIndex === columns - 1 ? 120 : "80%"} />
+            </TableCell>
+          ))}
+        </TableRow>
+      ))}
+    </TableBody>
+  );
+}
+
+function getInitials(name: string) {
+  const parts = name.trim().split(" ").filter(Boolean);
+  if (parts.length === 0) return "CL";
+  const [first, second] = parts;
+  return `${first[0] ?? ""}${second?.[0] ?? ""}`.toUpperCase();
+}
 
 export default function HomePage() {
   useProtectedRoute();
@@ -77,26 +148,118 @@ export default function HomePage() {
     }
   }, [clearError, error]);
 
-  const sortedLeads = useMemo(
+  const sortedLeads = useMemo(() => {
+    return [...leads].sort((a, b) => {
+      return (b.createdAt ? Date.parse(b.createdAt) : 0) - (a.createdAt ? Date.parse(a.createdAt) : 0);
+    });
+  }, [leads]);
+
+  const sortedClients = useMemo(() => {
+    return [...clients].sort((a, b) => {
+      return (b.createdAt ? Date.parse(b.createdAt) : 0) - (a.createdAt ? Date.parse(a.createdAt) : 0);
+    });
+  }, [clients]);
+
+  const range30d = Date.now() - 30 * 24 * 60 * 60 * 1000;
+  const previousRangeStart = range30d - 30 * 24 * 60 * 60 * 1000;
+
+  const leadsLast30 = useMemo(
     () =>
-      [...leads].sort((a, b) => {
-        return (b.createdAt ? Date.parse(b.createdAt) : 0) - (a.createdAt ? Date.parse(a.createdAt) : 0);
+      leads.filter((lead) => {
+        const created = lead.createdAt ? Date.parse(lead.createdAt) : 0;
+        return created >= range30d;
       }),
-    [leads],
+    [leads, range30d],
   );
 
-  const sortedClients = useMemo(
+  const leadsPrev30 = useMemo(
     () =>
-      [...clients].sort((a, b) => {
-        return (b.createdAt ? Date.parse(b.createdAt) : 0) - (a.createdAt ? Date.parse(a.createdAt) : 0);
+      leads.filter((lead) => {
+        const created = lead.createdAt ? Date.parse(lead.createdAt) : 0;
+        return created >= previousRangeStart && created < range30d;
       }),
+    [leads, previousRangeStart, range30d],
+  );
+
+  const clientsLast30 = useMemo(
+    () =>
+      clients.filter((client) => {
+        const created = client.createdAt ? Date.parse(client.createdAt) : 0;
+        return created >= range30d;
+      }),
+    [clients, range30d],
+  );
+
+  const clientsPrev30 = useMemo(
+    () =>
+      clients.filter((client) => {
+        const created = client.createdAt ? Date.parse(client.createdAt) : 0;
+        return created >= previousRangeStart && created < range30d;
+      }),
+    [clients, previousRangeStart, range30d],
+  );
+
+  const conversionCount = useMemo(
+    () => clients.filter((client) => Boolean(client.leadOriginId)).length,
     [clients],
   );
 
-  const formatDate = (value?: string) => {
-    if (!value) return "-";
-    return new Date(value).toLocaleString("pt-BR");
-  };
+  const conversionRate = useMemo(() => {
+    if (leads.length === 0) return 0;
+    const rate = (conversionCount / leads.length) * 100;
+    return Math.min(100, Math.round(rate * 10) / 10);
+  }, [conversionCount, leads.length]);
+
+  const pipeline = useMemo(() => {
+    const counts = { HOT: 0, WARM: 0, COLD: 0 };
+    leads.forEach((lead) => {
+      if (lead.status === "HOT" || lead.status === "WARM" || lead.status === "COLD") {
+        counts[lead.status] += 1;
+      }
+    });
+    const total = Math.max(1, leads.length);
+    return [
+      { key: "HOT" as const, label: "Quentes", count: counts.HOT, color: "error" as const, value: (counts.HOT / total) * 100 },
+      { key: "WARM" as const, label: "Em contato", count: counts.WARM, color: "warning" as const, value: (counts.WARM / total) * 100 },
+      { key: "COLD" as const, label: "Frias", count: counts.COLD, color: "info" as const, value: (counts.COLD / total) * 100 },
+    ];
+  }, [leads]);
+
+  const activities = useMemo(() => {
+    const combined: Array<{
+      id: string;
+      name: string;
+      action: string;
+      createdAt?: string;
+      type: "lead" | "client";
+    }> = [
+      ...leads.map((lead) => ({
+        id: `lead-${lead.id}`,
+        name: lead.name,
+        action: `Lead ${lead.status.toLowerCase()} criado`,
+        createdAt: lead.createdAt,
+        type: "lead" as const,
+      })),
+      ...clients.map((client) => ({
+        id: `client-${client.id}`,
+        name: client.name,
+        action: client.leadOrigin ? "Cliente vindo de lead" : "Cliente criado",
+        createdAt: client.createdAt,
+        type: "client" as const,
+      })),
+    ];
+    return combined
+      .sort((a, b) => (b.createdAt ? Date.parse(b.createdAt) : 0) - (a.createdAt ? Date.parse(a.createdAt) : 0))
+      .slice(0, 6);
+  }, [clients, leads]);
+
+  const topClients = useMemo(
+    () =>
+      [...clients]
+        .sort((a, b) => (b.createdAt ? Date.parse(b.createdAt) : 0) - (a.createdAt ? Date.parse(a.createdAt) : 0))
+        .slice(0, 5),
+    [clients],
+  );
 
   const handleLeadSubmit = async (payload: LeadPayload) => {
     try {
@@ -215,221 +378,429 @@ export default function HomePage() {
     }
   };
 
-  const renderSkeleton = (
-    <Stack justifyContent="center" alignItems="center" sx={{ py: 5 }}>
-      <CircularProgress />
-      <Typography sx={{ mt: 2 }} color="text.secondary">
-        Carregando dados...
-      </Typography>
-    </Stack>
-  );
-
-  const renderEmptyState = (message: string) => (
-    <Box sx={{ py: 3 }}>
-      <Typography color="text.secondary">{message}</Typography>
-    </Box>
-  );
-
   return (
     <DashboardLayout>
-      <Stack spacing={4}>
-        <Stack spacing={3}>
-          <Stack
-            direction={{ xs: "column", lg: "row" }}
-            spacing={3}
-            alignItems="stretch"
-          >
-            <Box sx={{ flex: 1 }}>
-              <LeadClientMonthlyChart leads={leads} clients={clients} />
-            </Box>
-            <Box
-              sx={{
-                flex: { lg: "0 0 420px", xs: 1 },
-                display: "flex",
-                justifyContent: { xs: "stretch", lg: "flex-end" },
-              }}
-            >
-              <LeadStatusDonutChart leads={leads} maxWidth={420} />
-            </Box>
-          </Stack>
-        </Stack>
-        <Paper sx={{ p: 3 }}>
-          <Stack direction="row" justifyContent="space-between" alignItems="center" flexWrap="wrap" gap={2}>
-            <Box>
-              <Typography variant="h5" fontWeight={600}>
-                Leads
-              </Typography>
-              <Typography color="text.secondary">
-                Consulte e mantenha o funil comercial da sua empresa.
-              </Typography>
-            </Box>
+      <Stack spacing={3}>
+        <Stack
+          direction={{ xs: "column", md: "row" }}
+          justifyContent="space-between"
+          spacing={2}
+          alignItems={{ xs: "flex-start", md: "center" }}
+        >
+          <Box>
+            <Typography variant="h4" fontWeight={800}>
+              Dashboard
+            </Typography>
+            <Typography color="text.secondary">
+              Visão geral em tempo real do seu pipeline multi-tenant.
+            </Typography>
+          </Box>
+          <Stack direction="row" spacing={1} flexWrap="wrap">
             <Button
-              variant="contained"
-              startIcon={<Plus size={18} />}
+              variant="outlined"
+              startIcon={<Plus size={16} />}
               onClick={() => setLeadDialog({ open: true, record: null })}
             >
               Novo Lead
             </Button>
-          </Stack>
-          {loading && leads.length === 0 ? (
-            renderSkeleton
-          ) : (
-            <TableContainer sx={{ mt: 3 }}>
-              <Table size="small">
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Nome</TableCell>
-                    <TableCell>E-mail</TableCell>
-                    <TableCell>Telefone</TableCell>
-                    <TableCell>Status</TableCell>
-                    <TableCell>CNPJ</TableCell>
-                    <TableCell>CPF</TableCell>
-                    <TableCell>Criado em</TableCell>
-                    <TableCell align="right">Ações</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {sortedLeads.map((lead) => {
-                    const isConverting = convertingLeadId === lead.id;
-                    const anotherConversionInProgress =
-                      Boolean(convertingLeadId) && convertingLeadId !== lead.id;
-                    return (
-                      <TableRow key={lead.id} hover>
-                        <TableCell>{lead.name}</TableCell>
-                        <TableCell>{lead.email ?? "-"}</TableCell>
-                        <TableCell>{lead.phone ?? "-"}</TableCell>
-                        <TableCell>
-                          <Chip
-                            label={lead.status}
-                            color={
-                              lead.status === "HOT"
-                                ? "error"
-                                : lead.status === "WARM"
-                                ? "warning"
-                                : "default"
-                            }
-                            size="small"
-                          />
-                        </TableCell>
-                        <TableCell>{lead.cnpj ?? "-"}</TableCell>
-                        <TableCell>{lead.cpf ?? "-"}</TableCell>
-                        <TableCell>{formatDate(lead.createdAt)}</TableCell>
-                        <TableCell align="right">
-                          <Button
-                            size="small"
-                            variant="outlined"
-                            startIcon={
-                              isConverting ? (
-                                <CircularProgress size={16} color="inherit" />
-                              ) : (
-                                <UserCheck size={16} />
-                              )
-                            }
-                            sx={{ mr: 1 }}
-                            disabled={isConverting || anotherConversionInProgress}
-                            onClick={() => handleConvertLead(lead)}
-                          >
-                            Converter
-                          </Button>
-                          <IconButton
-                            size="small"
-                            onClick={() => setLeadDialog({ open: true, record: lead })}
-                          >
-                            <Edit3 size={16} />
-                          </IconButton>
-                          <IconButton
-                            size="small"
-                            color="error"
-                            onClick={() => setDeleteTarget({ type: "lead", record: lead })}
-                          >
-                            <Trash2 size={16} />
-                          </IconButton>
-                        </TableCell>
-                      </TableRow>
-                    );
-                  })}
-                </TableBody>
-              </Table>
-              {sortedLeads.length === 0 && !loading && renderEmptyState("Nenhum lead encontrado para esta empresa.")}
-            </TableContainer>
-          )}
-        </Paper>
-
-        <Paper sx={{ p: 3 }}>
-          <Stack direction="row" justifyContent="space-between" alignItems="center" flexWrap="wrap" gap={2}>
-            <Box>
-              <Typography variant="h5" fontWeight={600}>
-                Clientes
-              </Typography>
-              <Typography color="text.secondary">
-                Acompanhe os clientes ativos e vincule a origem do lead.
-              </Typography>
-            </Box>
             <Button
               variant="contained"
-              startIcon={<Plus size={18} />}
+              startIcon={<Plus size={16} />}
               onClick={() => setClientDialog({ open: true, record: null })}
             >
               Novo Cliente
             </Button>
           </Stack>
-          {loading && clients.length === 0 ? (
-            renderSkeleton
-          ) : (
-            <TableContainer sx={{ mt: 3 }}>
-              <Table size="small">
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Nome</TableCell>
-                    <TableCell>E-mail</TableCell>
-                    <TableCell>Telefone</TableCell>
-                    <TableCell>CNPJ</TableCell>
-                    <TableCell>Lead Origin</TableCell>
-                    <TableCell align="right">Ações</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {sortedClients.map((client) => (
-                    <TableRow key={client.id} hover>
-                      <TableCell>{client.name}</TableCell>
-                      <TableCell>{client.email ?? "-"}</TableCell>
-                      <TableCell>{client.phone ?? "-"}</TableCell>
-                      <TableCell>{client.cnpj ?? "-"}</TableCell>
-                      <TableCell>
-                        {client.leadOrigin ? (
-                          <Stack direction="row" spacing={1} alignItems="center">
-                            <Typography variant="body2">{client.leadOrigin.name}</Typography>
-                            {client.leadOrigin.status && (
-                              <Chip label={client.leadOrigin.status} size="small" variant="outlined" />
-                            )}
+        </Stack>
+
+        <Stack direction={{ xs: "column", md: "row" }} spacing={2} flexWrap="wrap">
+          <Box sx={{ flex: 1, minWidth: 240 }}>
+            <MetricCard
+              title="Total de Clientes"
+              value={clients.length.toLocaleString("pt-BR")}
+              helper={`${clientsLast30.length} novos nos últimos 30 dias`}
+              icon={Users}
+              loading={loading}
+            />
+          </Box>
+          <Box sx={{ flex: 1, minWidth: 240 }}>
+            <MetricCard
+              title="Leads Ativos"
+              value={leads.length.toLocaleString("pt-BR")}
+              helper={percentageChange(leadsLast30.length, leadsPrev30.length)}
+              icon={UserPlus}
+              loading={loading}
+            />
+          </Box>
+          <Box sx={{ flex: 1, minWidth: 240 }}>
+            <MetricCard
+              title="Conversões"
+              value={`${conversionRate.toFixed(1)}%`}
+              helper={`${conversionCount} clientes vieram de leads`}
+              icon={TrendingUp}
+              loading={loading}
+            />
+          </Box>
+          <Box sx={{ flex: 1, minWidth: 240 }}>
+            <MetricCard
+              title="Novos Clientes (30d)"
+              value={clientsLast30.length.toLocaleString("pt-BR")}
+              helper={percentageChange(clientsLast30.length, clientsPrev30.length)}
+              icon={BarChart3}
+              loading={loading}
+            />
+          </Box>
+        </Stack>
+
+        <Stack spacing={2} id="relatorios">
+          <Stack direction={{ xs: "column", lg: "row" }} spacing={2}>
+            <Box sx={{ flex: 1 }}>
+              <LeadClientMonthlyChart leads={leads} clients={clients} loading={loading} />
+            </Box>
+            <Box sx={{ flex: { lg: "0 0 380px", xs: 1 } }}>
+              <Stack spacing={2}>
+                <SectionCard
+                  title="Pipeline de Leads"
+                  subtitle={`${leads.length} leads ativos no funil`}
+                >
+                  <Stack spacing={2}>
+                    {loading
+                      ? Array.from({ length: 3 }).map((_, index) => (
+                          <Skeleton key={index} variant="rounded" height={32} />
+                        ))
+                      : pipeline.map((stage) => (
+                          <Stack key={stage.key} spacing={0.5}>
+                            <Stack direction="row" justifyContent="space-between" alignItems="center">
+                              <Typography variant="body2" fontWeight={700}>
+                                {stage.label}
+                              </Typography>
+                              <Chip
+                                label={`${stage.count} leads`}
+                                size="small"
+                                color={stage.color}
+                                variant="outlined"
+                              />
+                            </Stack>
+                            <LinearProgress
+                              variant="determinate"
+                              value={stage.value}
+                              color={stage.color}
+                              sx={{ height: 8, borderRadius: 8 }}
+                            />
                           </Stack>
-                        ) : (
-                          "-"
-                        )}
-                      </TableCell>
-                      <TableCell align="right">
-                        <IconButton
-                          size="small"
-                          onClick={() => setClientDialog({ open: true, record: client })}
+                        ))}
+                  </Stack>
+                </SectionCard>
+                <LeadStatusDonutChart leads={leads} loading={loading} />
+              </Stack>
+            </Box>
+          </Stack>
+        </Stack>
+
+        <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
+          <Box sx={{ flex: 1 }}>
+            <SectionCard
+              title="Atividades recentes"
+              subtitle="Últimas ações de leads e clientes"
+            >
+              <Stack spacing={2} sx={{ mt: 1 }}>
+                {loading
+                  ? Array.from({ length: 4 }).map((_, index) => (
+                      <Skeleton key={index} variant="rounded" height={56} />
+                    ))
+                  : activities.map((activity) => (
+                      <Stack
+                        key={activity.id}
+                        direction="row"
+                        spacing={2}
+                        alignItems="center"
+                        sx={{ p: 1, borderRadius: 2, bgcolor: "action.hover" }}
+                      >
+                        <Avatar
+                          sx={{
+                            width: 40,
+                            height: 40,
+                            bgcolor: activity.type === "client" ? "primary.main" : "secondary.main",
+                            color: activity.type === "client" ? "primary.contrastText" : "text.primary",
+                            fontWeight: 700,
+                          }}
                         >
-                          <Edit3 size={16} />
-                        </IconButton>
-                        <IconButton
+                          {activity.name.slice(0, 2).toUpperCase()}
+                        </Avatar>
+                        <Box sx={{ flex: 1, minWidth: 0 }}>
+                          <Typography fontWeight={700} noWrap>
+                            {activity.name}
+                          </Typography>
+                          <Typography variant="body2" color="text.secondary" noWrap>
+                            {activity.action}
+                          </Typography>
+                        </Box>
+                        <Chip
+                          label={formatRelativeTime(activity.createdAt)}
                           size="small"
-                          color="error"
-                          onClick={() => setDeleteTarget({ type: "client", record: client })}
+                          variant="outlined"
+                        />
+                      </Stack>
+                    ))}
+                {!loading && activities.length === 0 ? (
+                  <Typography color="text.secondary">Nenhuma atividade registrada ainda.</Typography>
+                ) : null}
+              </Stack>
+            </SectionCard>
+          </Box>
+          <Box sx={{ flex: 1 }}>
+            <SectionCard
+              title="Principais clientes"
+              subtitle="Últimos clientes convertidos ou criados"
+            >
+              <Stack spacing={2} sx={{ mt: 1 }}>
+                {loading
+                  ? Array.from({ length: 4 }).map((_, index) => (
+                      <Skeleton key={index} variant="rounded" height={60} />
+                    ))
+                  : topClients.map((client, index) => (
+                      <Stack
+                        key={client.id}
+                        direction="row"
+                        spacing={2}
+                        alignItems="center"
+                        sx={{ p: 1, borderRadius: 2, border: "1px solid", borderColor: "divider" }}
+                      >
+                        <Typography
+                          variant="body2"
+                          color="text.secondary"
+                          width={20}
+                          sx={{ fontWeight: 700 }}
                         >
-                          <Trash2 size={16} />
-                        </IconButton>
-                      </TableCell>
+                          #{index + 1}
+                        </Typography>
+                        <Avatar
+                          sx={{
+                            bgcolor: "primary.main",
+                            color: "primary.contrastText",
+                            fontWeight: 700,
+                          }}
+                        >
+                          {getInitials(client.name)}
+                        </Avatar>
+                        <Box sx={{ flex: 1, minWidth: 0 }}>
+                          <Typography fontWeight={700} noWrap>
+                            {client.name}
+                          </Typography>
+                          <Typography variant="body2" color="text.secondary" noWrap>
+                            {client.leadOrigin
+                              ? `Originado do lead ${client.leadOrigin.name}`
+                              : "Cliente direto"}
+                          </Typography>
+                        </Box>
+                        <Chip
+                          label={formatRelativeTime(client.createdAt)}
+                          size="small"
+                          variant="outlined"
+                        />
+                      </Stack>
+                    ))}
+                {!loading && topClients.length === 0 ? (
+                  <Typography color="text.secondary">Nenhum cliente cadastrado ainda.</Typography>
+                ) : null}
+              </Stack>
+            </SectionCard>
+          </Box>
+        </Stack>
+
+        <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
+          <Box sx={{ flex: 1 }} id="leads">
+            <SectionCard
+              title="Leads"
+              subtitle="Consulte e mantenha o funil comercial da empresa."
+              action={
+                <Button
+                  variant="contained"
+                  startIcon={<Plus size={16} />}
+                  onClick={() => setLeadDialog({ open: true, record: null })}
+                >
+                  Novo Lead
+                </Button>
+              }
+            >
+              <TableContainer component={Paper} variant="outlined">
+                <Table size="small">
+                  <TableHead>
+                    <TableRow>
+                      <TableCell>Nome</TableCell>
+                      <TableCell>E-mail</TableCell>
+                      <TableCell>Telefone</TableCell>
+                      <TableCell>Status</TableCell>
+                      <TableCell>CNPJ</TableCell>
+                      <TableCell>CPF</TableCell>
+                      <TableCell>Criado em</TableCell>
+                      <TableCell align="right">Ações</TableCell>
                     </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-              {sortedClients.length === 0 && !loading && renderEmptyState("Nenhum cliente cadastrado ainda.")}
-            </TableContainer>
-          )}
-        </Paper>
+                  </TableHead>
+                  {loading && sortedLeads.length === 0 ? (
+                    <TableSkeleton columns={8} />
+                  ) : (
+                    <TableBody>
+                      {sortedLeads.map((lead) => {
+                        const isConverting = convertingLeadId === lead.id;
+                        const anotherConversionInProgress =
+                          Boolean(convertingLeadId) && convertingLeadId !== lead.id;
+                        return (
+                          <TableRow key={lead.id} hover>
+                            <TableCell>{lead.name}</TableCell>
+                            <TableCell>{lead.email ?? "-"}</TableCell>
+                            <TableCell>{lead.phone ?? "-"}</TableCell>
+                            <TableCell>
+                              <Chip
+                                label={lead.status}
+                                color={
+                                  lead.status === "HOT"
+                                    ? "error"
+                                    : lead.status === "WARM"
+                                    ? "warning"
+                                    : "info"
+                                }
+                                size="small"
+                              />
+                            </TableCell>
+                            <TableCell>{lead.cnpj ?? "-"}</TableCell>
+                            <TableCell>{lead.cpf ?? "-"}</TableCell>
+                            <TableCell>{formatDate(lead.createdAt)}</TableCell>
+                            <TableCell align="right">
+                              <Button
+                                size="small"
+                                variant="outlined"
+                                startIcon={
+                                  isConverting ? (
+                                    <CircularProgress size={16} color="inherit" />
+                                  ) : (
+                                    <UserCheck size={16} />
+                                  )
+                                }
+                                sx={{ mr: 1 }}
+                                disabled={isConverting || anotherConversionInProgress}
+                                onClick={() => handleConvertLead(lead)}
+                              >
+                                Converter
+                              </Button>
+                              <IconButton
+                                size="small"
+                                onClick={() => setLeadDialog({ open: true, record: lead })}
+                              >
+                                <Edit3 size={16} />
+                              </IconButton>
+                              <IconButton
+                                size="small"
+                                color="error"
+                                onClick={() => setDeleteTarget({ type: "lead", record: lead })}
+                              >
+                                <Trash2 size={16} />
+                              </IconButton>
+                            </TableCell>
+                          </TableRow>
+                        );
+                      })}
+                    </TableBody>
+                  )}
+                </Table>
+                {sortedLeads.length === 0 && !loading ? (
+                  <Box sx={{ p: 2 }}>
+                    <Typography color="text.secondary">
+                      Nenhum lead encontrado para esta empresa.
+                    </Typography>
+                  </Box>
+                ) : null}
+              </TableContainer>
+            </SectionCard>
+          </Box>
+
+          <Box sx={{ flex: 1 }} id="clientes">
+            <SectionCard
+              title="Clientes"
+              subtitle="Acompanhe clientes ativos e origens de leads."
+              action={
+                <Button
+                  variant="contained"
+                  startIcon={<Plus size={16} />}
+                  onClick={() => setClientDialog({ open: true, record: null })}
+                >
+                  Novo Cliente
+                </Button>
+              }
+            >
+              <TableContainer component={Paper} variant="outlined">
+                <Table size="small">
+                  <TableHead>
+                    <TableRow>
+                      <TableCell>Nome</TableCell>
+                      <TableCell>E-mail</TableCell>
+                      <TableCell>Telefone</TableCell>
+                      <TableCell>CNPJ</TableCell>
+                      <TableCell>Lead Origin</TableCell>
+                      <TableCell>Criado em</TableCell>
+                      <TableCell align="right">Ações</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  {loading && sortedClients.length === 0 ? (
+                    <TableSkeleton columns={7} />
+                  ) : (
+                    <TableBody>
+                      {sortedClients.map((client) => (
+                        <TableRow key={client.id} hover>
+                          <TableCell>{client.name}</TableCell>
+                          <TableCell>{client.email ?? "-"}</TableCell>
+                          <TableCell>{client.phone ?? "-"}</TableCell>
+                          <TableCell>{client.cnpj ?? "-"}</TableCell>
+                          <TableCell>
+                            {client.leadOrigin ? (
+                              <Stack direction="row" spacing={1} alignItems="center">
+                                <Typography variant="body2">
+                                  {client.leadOrigin.name}
+                                </Typography>
+                                {client.leadOrigin.status ? (
+                                  <Chip
+                                    label={client.leadOrigin.status}
+                                    size="small"
+                                    variant="outlined"
+                                  />
+                                ) : null}
+                              </Stack>
+                            ) : (
+                              "-"
+                            )}
+                          </TableCell>
+                          <TableCell>{formatDate(client.createdAt)}</TableCell>
+                          <TableCell align="right">
+                            <IconButton
+                              size="small"
+                              onClick={() => setClientDialog({ open: true, record: client })}
+                            >
+                              <Edit3 size={16} />
+                            </IconButton>
+                            <IconButton
+                              size="small"
+                              color="error"
+                              onClick={() => setDeleteTarget({ type: "client", record: client })}
+                            >
+                              <Trash2 size={16} />
+                            </IconButton>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  )}
+                </Table>
+                {sortedClients.length === 0 && !loading ? (
+                  <Box sx={{ p: 2 }}>
+                    <Typography color="text.secondary">
+                      Nenhum cliente cadastrado ainda.
+                    </Typography>
+                  </Box>
+                ) : null}
+              </TableContainer>
+            </SectionCard>
+          </Box>
+        </Stack>
       </Stack>
 
       <LeadDialog

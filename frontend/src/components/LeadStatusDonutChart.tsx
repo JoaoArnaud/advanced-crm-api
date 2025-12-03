@@ -3,7 +3,7 @@
 import { useMemo } from "react";
 import dynamic from "next/dynamic";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import { Paper, Typography, Stack, Box, useTheme } from "@mui/material";
+import { Box, Card, CardContent, Skeleton, Stack, Typography, useTheme } from "@mui/material";
 import { Lead } from "@/types/api";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -17,12 +17,14 @@ interface LeadStatusDonutChartProps {
   leads: Lead[];
   title?: string;
   maxWidth?: number | string;
+  loading?: boolean;
 }
 
 export function LeadStatusDonutChart({
   leads,
   title = "Distribuição de Leads por Status",
   maxWidth,
+  loading,
 }: LeadStatusDonutChartProps) {
   const theme = useTheme();
 
@@ -87,62 +89,66 @@ export function LeadStatusDonutChart({
   );
 
   return (
-    <Paper
+    <Card
       sx={{
-        p: 3,
         height: "100%",
         width: "100%",
         maxWidth: maxWidth ?? "100%",
       }}
-      elevation={2}
     >
-      <Stack spacing={3}>
-        <Typography variant="h6" fontWeight={600}>
-          {title}
-        </Typography>
-        <Stack
-          direction={{ xs: "column", md: "row" }}
-          spacing={3}
-          alignItems="center"
-          justifyContent="space-between"
-        >
-          <Box sx={{ flex: 1, width: "100%", minWidth: 0 }}>
-            <Box sx={{ height: 260 }}>
-              <DoughnutChart data={chartData} options={chartOptions} />
-            </Box>
-          </Box>
-          <Box sx={{ flex: 1 }}>
-            <Stack spacing={1.5}>
-              {statusConfig.map((status) => (
-                <Stack
-                  key={status.key}
-                  direction="row"
-                  alignItems="center"
-                  justifyContent="space-between"
-                  spacing={1}
-                >
-                  <Stack direction="row" spacing={1} alignItems="center">
-                    <Box
-                      sx={{
-                        width: 12,
-                        height: 12,
-                        borderRadius: "50%",
-                        bgcolor: status.color,
-                      }}
-                    />
-                    <Typography variant="body2" fontWeight={500}>
-                      {status.label}
-                    </Typography>
-                  </Stack>
-                  <Typography variant="body2" color="text.secondary">
-                    {statusCounts[status.key]} leads
-                  </Typography>
+      <CardContent>
+        <Stack spacing={3}>
+          <Typography variant="h6" fontWeight={700}>
+            {title}
+          </Typography>
+          {loading ? (
+            <Skeleton variant="rounded" height={220} />
+          ) : (
+            <Stack
+              direction={{ xs: "column", md: "row" }}
+              spacing={3}
+              alignItems="center"
+              justifyContent="space-between"
+            >
+              <Box sx={{ flex: 1, width: "100%", minWidth: 0 }}>
+                <Box sx={{ height: 240 }}>
+                  <DoughnutChart data={chartData} options={chartOptions} />
+                </Box>
+              </Box>
+              <Box sx={{ flex: 1 }}>
+                <Stack spacing={1.5}>
+                  {statusConfig.map((status) => (
+                    <Stack
+                      key={status.key}
+                      direction="row"
+                      alignItems="center"
+                      justifyContent="space-between"
+                      spacing={1}
+                    >
+                      <Stack direction="row" spacing={1} alignItems="center">
+                        <Box
+                          sx={{
+                            width: 12,
+                            height: 12,
+                            borderRadius: "50%",
+                            bgcolor: status.color,
+                          }}
+                        />
+                        <Typography variant="body2" fontWeight={600}>
+                          {status.label}
+                        </Typography>
+                      </Stack>
+                      <Typography variant="body2" color="text.secondary">
+                        {statusCounts[status.key]} leads
+                      </Typography>
+                    </Stack>
+                  ))}
                 </Stack>
-              ))}
+              </Box>
             </Stack>
-          </Box>
+          )}
         </Stack>
-      </Stack>
-    </Paper>
+      </CardContent>
+    </Card>
   );
 }
