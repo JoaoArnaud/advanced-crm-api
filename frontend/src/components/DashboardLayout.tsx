@@ -4,11 +4,9 @@ import { useState } from "react";
 import {
   Box,
   Avatar,
-  Badge,
   Divider,
   Drawer,
   IconButton,
-  InputAdornment,
   List,
   ListItemButton,
   ListItemIcon,
@@ -16,19 +14,16 @@ import {
   Menu,
   MenuItem,
   Stack,
-  TextField,
   Tooltip,
   Typography,
   useTheme,
 } from "@mui/material";
 import {
   BarChart3,
-  Bell,
   LayoutDashboard,
   LogOut,
   Menu as MenuIcon,
   Moon,
-  Search,
   Settings,
   Sun,
   UserPlus,
@@ -37,6 +32,8 @@ import {
 import { usePathname, useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
 import { useColorMode } from "@/components/LayoutProviders";
+import { NotificationMenu } from "@/components/NotificationMenu";
+import { SearchBar } from "@/components/SearchBar";
 
 const drawerWidth = 260;
 
@@ -255,18 +252,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
               <MenuIcon size={20} />
             </IconButton>
             <Box sx={{ flex: 1, maxWidth: 520 }}>
-              <TextField
-                placeholder="Buscar clientes, leads..."
-                size="small"
-                fullWidth
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <Search size={16} />
-                    </InputAdornment>
-                  ),
-                }}
-              />
+              <SearchBar />
             </Box>
             <Stack direction="row" spacing={1} alignItems="center">
               <Tooltip title={mode === "light" ? "Ativar modo escuro" : "Ativar modo claro"}>
@@ -274,13 +260,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
                   {mode === "light" ? <Moon size={18} /> : <Sun size={18} />}
                 </IconButton>
               </Tooltip>
-              <Tooltip title="Notificações">
-                <IconButton>
-                  <Badge variant="dot" color="error">
-                    <Bell size={18} />
-                  </Badge>
-                </IconButton>
-              </Tooltip>
+              <NotificationMenu />
               <IconButton onClick={(event) => setMenuAnchor(event.currentTarget)}>
                 <Avatar
                   sx={{

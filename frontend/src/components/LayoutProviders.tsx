@@ -17,6 +17,8 @@ import {
 } from "react";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { CRMDataProvider } from "@/contexts/CRMDataContext";
+import { NotificationProvider } from "@/contexts/NotificationContext";
+import { SearchProvider } from "@/contexts/SearchContext";
 
 const STORAGE_KEY = "clientdesk-color-mode";
 
@@ -251,7 +253,11 @@ export function LayoutProviders({ children }: { children: React.ReactNode }) {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <AuthProvider>
-          <CRMDataProvider>{children}</CRMDataProvider>
+          <NotificationProvider>
+            <SearchProvider>
+              <CRMDataProvider>{children}</CRMDataProvider>
+            </SearchProvider>
+          </NotificationProvider>
         </AuthProvider>
       </ThemeProvider>
     </ColorModeContext.Provider>

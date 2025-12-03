@@ -19,6 +19,7 @@ import {
 import { useAuth } from "@/contexts/AuthContext";
 import { leadService } from "@/services/leadService";
 import { clientService } from "@/services/clientService";
+import { useNotifications } from "@/contexts/NotificationContext";
 
 interface CRMDataContextValue {
   leads: Lead[];
@@ -43,6 +44,7 @@ const CRMDataContext = createContext<CRMDataContextValue | undefined>(undefined)
 
 export function CRMDataProvider({ children }: { children: React.ReactNode }) {
   const { user } = useAuth();
+  const { addNotification } = useNotifications();
   const [leads, setLeads] = useState<Lead[]>([]);
   const [clients, setClients] = useState<Client[]>([]);
   const [loading, setLoading] = useState(false);
@@ -90,6 +92,11 @@ export function CRMDataProvider({ children }: { children: React.ReactNode }) {
       try {
         const { data } = await leadService.create(companyId, payload);
         setLeads((prev) => [...prev, data]);
+        addNotification({
+          type: "lead_created",
+          title: `Lead "${data.name ?? "sem nome"}" criado`,
+          relatedId: data.id,
+        });
         return data;
       } catch (err) {
         console.error(err);
@@ -97,7 +104,7 @@ export function CRMDataProvider({ children }: { children: React.ReactNode }) {
         throw err;
       }
     },
-    [companyId, handleError],
+    [addNotification, companyId, handleError],
   );
 
   const updateLead = useCallback(
@@ -129,14 +136,25 @@ export function CRMDataProvider({ children }: { children: React.ReactNode }) {
       }
       try {
         await leadService.remove(companyId, leadId);
-        setLeads((prev) => prev.filter((lead) => lead.id !== leadId));
+        let removedLead: Lead | undefined;
+        setLeads((prev) => {
+          removedLead = prev.find((lead) => lead.id === leadId);
+          return prev.filter((lead) => lead.id !== leadId);
+        });
+        if (removedLead) {
+          addNotification({
+            type: "lead_removed",
+            title: `Lead "${removedLead.name ?? "sem nome"}" removido`,
+            relatedId: leadId,
+          });
+        }
       } catch (err) {
         console.error(err);
         handleError("Erro ao remover lead.");
         throw err;
       }
     },
-    [companyId, handleError],
+    [addNotification, companyId, handleError],
   );
 
   const createClient = useCallback(
@@ -148,6 +166,11 @@ export function CRMDataProvider({ children }: { children: React.ReactNode }) {
       try {
         const { data } = await clientService.create(companyId, payload);
         setClients((prev) => [...prev, data]);
+        addNotification({
+          type: "client_created",
+          title: `Cliente "${data.name ?? "sem nome"}" criado`,
+          relatedId: data.id,
+        });
         return data;
       } catch (err) {
         console.error(err);
@@ -155,7 +178,7 @@ export function CRMDataProvider({ children }: { children: React.ReactNode }) {
         throw err;
       }
     },
-    [companyId, handleError],
+    [addNotification, companyId, handleError],
   );
 
   const updateClient = useCallback(
@@ -191,14 +214,25 @@ export function CRMDataProvider({ children }: { children: React.ReactNode }) {
       }
       try {
         await clientService.remove(companyId, clientId);
-        setClients((prev) => prev.filter((client) => client.id !== clientId));
+        let removedClient: Client | undefined;
+        setClients((prev) => {
+          removedClient = prev.find((client) => client.id === clientId);
+          return prev.filter((client) => client.id !== clientId);
+        });
+        if (removedClient) {
+          addNotification({
+            type: "client_removed",
+            title: `Cliente "${removedClient.name ?? "sem nome"}" removido`,
+            relatedId: clientId,
+          });
+        }
       } catch (err) {
         console.error(err);
         handleError("Erro ao remover cliente.");
         throw err;
       }
     },
-    [companyId, handleError],
+    [addNotification, companyId, handleError],
   );
 
   const convertLeadToClient = useCallback(
@@ -217,6 +251,16 @@ export function CRMDataProvider({ children }: { children: React.ReactNode }) {
         });
         setClients((prev) => [...prev, data]);
         setLeads((prev) => prev.filter((existing) => existing.id !== lead.id));
+        addNotification({
+          type: "client_created",
+          title: `Cliente "${data.name ?? "sem nome"}" criado`,
+          relatedId: data.id,
+        });
+        addNotification({
+          type: "lead_removed",
+          title: `Lead "${lead.name ?? "sem nome"}" removido`,
+          relatedId: lead.id,
+        });
         return data;
       } catch (err) {
         console.error(err);
@@ -224,7 +268,7 @@ export function CRMDataProvider({ children }: { children: React.ReactNode }) {
         throw err;
       }
     },
-    [companyId, handleError],
+    [addNotification, companyId, handleError],
   );
 
   const clearError = useCallback(() => setError(null), []);

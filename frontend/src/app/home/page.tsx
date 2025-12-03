@@ -35,6 +35,7 @@ import {
 import { DashboardLayout } from "@/components/DashboardLayout";
 import { useProtectedRoute } from "@/hooks/useProtectedRoute";
 import { useCRMData } from "@/contexts/CRMDataContext";
+import { useSearch } from "@/contexts/SearchContext";
 import { Lead, Client, LeadPayload, ClientPayload } from "@/types/api";
 import { LeadDialog } from "@/components/LeadDialog";
 import { ClientDialog } from "@/components/ClientDialog";
@@ -123,6 +124,9 @@ export default function HomePage() {
     deleteClient,
     convertLeadToClient,
   } = useCRMData();
+  const { query } = useSearch();
+  const normalizedQuery = query.trim().toLowerCase();
+  const hasSearch = normalizedQuery.length > 0;
 
   const [leadDialog, setLeadDialog] = useState<{
     open: boolean;
@@ -159,6 +163,36 @@ export default function HomePage() {
       return (b.createdAt ? Date.parse(b.createdAt) : 0) - (a.createdAt ? Date.parse(a.createdAt) : 0);
     });
   }, [clients]);
+
+  const filteredLeads = useMemo(() => {
+    if (!hasSearch) return sortedLeads;
+    const matchesQuery = (value?: string | null) =>
+      value ? value.toLowerCase().includes(normalizedQuery) : false;
+    return sortedLeads.filter((lead) =>
+      [
+        lead.name,
+        lead.email,
+        lead.phone,
+        lead.cnpj,
+        lead.cpf,
+      ].some((field) => matchesQuery(field ?? undefined)),
+    );
+  }, [hasSearch, normalizedQuery, sortedLeads]);
+
+  const filteredClients = useMemo(() => {
+    if (!hasSearch) return sortedClients;
+    const matchesQuery = (value?: string | null) =>
+      value ? value.toLowerCase().includes(normalizedQuery) : false;
+    return sortedClients.filter((client) =>
+      [
+        client.name,
+        client.email,
+        client.phone,
+        client.cnpj,
+        client.leadOrigin?.name,
+      ].some((field) => matchesQuery(field ?? undefined)),
+    );
+  }, [hasSearch, normalizedQuery, sortedClients]);
 
   const range30d = Date.now() - 30 * 24 * 60 * 60 * 1000;
   const previousRangeStart = range30d - 30 * 24 * 60 * 60 * 1000;
@@ -641,7 +675,7 @@ export default function HomePage() {
                     <TableSkeleton columns={8} />
                   ) : (
                     <TableBody>
-                      {sortedLeads.map((lead) => {
+                      {filteredLeads.map((lead) => {
                         const isConverting = convertingLeadId === lead.id;
                         const anotherConversionInProgress =
                           Boolean(convertingLeadId) && convertingLeadId !== lead.id;
@@ -700,16 +734,20 @@ export default function HomePage() {
                           </TableRow>
                         );
                       })}
+                      {filteredLeads.length === 0 && !loading ? (
+                        <TableRow>
+                          <TableCell colSpan={8}>
+                            <Typography color="text.secondary">
+                              {hasSearch
+                                ? "Nenhum resultado encontrado."
+                                : "Nenhum lead encontrado para esta empresa."}
+                            </Typography>
+                          </TableCell>
+                        </TableRow>
+                      ) : null}
                     </TableBody>
                   )}
                 </Table>
-                {sortedLeads.length === 0 && !loading ? (
-                  <Box sx={{ p: 2 }}>
-                    <Typography color="text.secondary">
-                      Nenhum lead encontrado para esta empresa.
-                    </Typography>
-                  </Box>
-                ) : null}
               </TableContainer>
             </SectionCard>
           </Box>
@@ -745,7 +783,7 @@ export default function HomePage() {
                     <TableSkeleton columns={7} />
                   ) : (
                     <TableBody>
-                      {sortedClients.map((client) => (
+                      {filteredClients.map((client) => (
                         <TableRow key={client.id} hover>
                           <TableCell>{client.name}</TableCell>
                           <TableCell>{client.email ?? "-"}</TableCell>
@@ -787,16 +825,20 @@ export default function HomePage() {
                           </TableCell>
                         </TableRow>
                       ))}
+                      {filteredClients.length === 0 && !loading ? (
+                        <TableRow>
+                          <TableCell colSpan={7}>
+                            <Typography color="text.secondary">
+                              {hasSearch
+                                ? "Nenhum resultado encontrado."
+                                : "Nenhum cliente cadastrado ainda."}
+                            </Typography>
+                          </TableCell>
+                        </TableRow>
+                      ) : null}
                     </TableBody>
                   )}
                 </Table>
-                {sortedClients.length === 0 && !loading ? (
-                  <Box sx={{ p: 2 }}>
-                    <Typography color="text.secondary">
-                      Nenhum cliente cadastrado ainda.
-                    </Typography>
-                  </Box>
-                ) : null}
               </TableContainer>
             </SectionCard>
           </Box>
